@@ -34,7 +34,7 @@
     pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.worker.min.mjs';
 
     // Set this to the deployed Google Apps Script Web App URL (see README).
-    const PDF_PROXY_URL = 'https://script.google.com/macros/s/AKfycbyGhU1qhlR2VUsraSdzvhLujwK3kfT2osJ_uEkGuO8no4MgMDJrzdRTpUJ_DTMq-Ef_/exec';
+    const PDF_API_URL = 'https://pdf-viewer-api-57301421043.asia-southeast1.run.app/pdf'; // Google Cloud Run PDF range API
     const DEFAULT_PAGE = 4;
     const canvasByPage = new Map();
     const renderedScale = new WeakMap();
@@ -149,42 +149,23 @@
       console.error('PDF page render failed:', err);
       setMessage('แสดงหน้าเอกสารไม่สำเร็จ กรุณาโหลดหน้าเว็บใหม่หรือลองอีกครั้ง', true);
     }
-    function loadFromAppsScript() {
-      return new Promise((resolve, reject) => {
-        const callbackName = 'pdfViewerDriveCallback';
-        const timeout = setTimeout(() => { cleanup(); reject(new Error('หมดเวลารอ Google Apps Script')); }, 90000);
-        function cleanup() { clearTimeout(timeout); delete window[callbackName]; script.remove(); }
-        const script = document.createElement('script');
-        window[callbackName] = result => {
-          cleanup();
-          if (!result || result.error) reject(new Error(result?.error || 'ไม่ได้รับข้อมูล PDF'));
-          else if (typeof result.data !== 'string') reject(new Error('รูปแบบข้อมูลจากตัวกลางไม่ถูกต้อง'));
-          else {
-            try {
-              const binary = atob(result.data);
-              const bytes = new Uint8Array(binary.length);
-              for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
-              resolve(bytes);
-            } catch (error) { reject(error); }
-          }
-        };
-        script.onerror = () => { cleanup(); reject(new Error('เรียก Google Apps Script ไม่สำเร็จ ตรวจสอบ URL และสิทธิ์การ Deploy')); };
-        const url = new URL(PDF_PROXY_URL);
-        url.searchParams.set('callback', callbackName);
-        // Unique URL helps avoid stale browser/CDN responses after the Drive file is replaced.
-        url.searchParams.set('v', `${Date.now()}`);
-        script.src = url.toString();
-        document.head.append(script);
-      });
+    // Fetch the PDF through Google Cloud Run with HTTP Range support.
+    // No 91 MB Base64 transfer, and no Apps Script size limit.
+    function getPdfSource() {
+      if (!PDF_API_URL) throw new Error('ยังไม่ได้ตั้งค่า PDF_API_URL จาก Google Cloud Run');
+      const url = new URL(PDF_API_URL);
+      // Prevent stale PDFs when a replacement version is uploaded to Drive.
+      url.searchParams.set('v', String(Date.now()));
+      return url.href;
     }
     async function start() {
-      if (!PDF_PROXY_URL) {
-        setMessage('ยังไม่ได้ตั้งค่า URL ของ Google Apps Script โปรดทำตามขั้นตอนใน README ก่อนเปิดใช้งาน', true);
+      if (!PDF_API_URL) {
+        setMessage('ยังไม่ได้ตั้งค่า URL ของ Google Cloud Run ใน PDF_API_URL', true);
         return;
       }
       try {
-        const data = await loadFromAppsScript();
-        pdf = await pdfjsLib.getDocument({ data }).promise;
+        const pdfUrl = getPdfSource();
+        pdf = await pdfjsLib.getDocument({ url: pdfUrl, disableAutoFetch: true, rangeChunkSize: 262144 }).promise;
         const requested = Number(new URLSearchParams(location.search).get('page') || DEFAULT_PAGE);
         current = Number.isSafeInteger(requested) && requested > 0 ? Math.min(requested, pdf.numPages) : Math.min(DEFAULT_PAGE, pdf.numPages);
         createPageContainers();
@@ -199,7 +180,7 @@
       } catch (error) {
         console.error('PDF load failed:', error);
         const detail = error?.message || 'ไม่ทราบสาเหตุ';
-        setMessage(`โหลด PDF ไม่สำเร็จ (${detail}) กรุณาตรวจสอบการ Deploy Google Apps Script, สิทธิ์เข้าถึงไฟล์ใน Drive และลองใหม่`, true);
+        setMessage(`โหลด PDF ไม่สำเร็จ (${detail}) กรุณาตรวจสอบ Cloud Run API, สิทธิ์ Google Drive และลองใหม่`, true);
       }
     }
     prev.addEventListener('click', () => go(current - 1));
