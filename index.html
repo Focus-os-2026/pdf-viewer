@@ -1,32 +1,226 @@
 <!doctype html>
 <html lang="th">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#202124">
-<title>PDF Viewer</title>
-<style>
-:root{font-family:system-ui,-apple-system,"Noto Sans Thai",sans-serif;color:#202124;background:#eff1f4}*{box-sizing:border-box}body{margin:0}header{background:#fff;border-bottom:1px solid #ddd;position:sticky;top:0;z-index:10;display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:10px 14px;justify-content:space-between}.brand{font-weight:700}nav{display:flex;align-items:center;gap:8px}button,input{font:inherit;border:1px solid #d4d7dc;border-radius:9px;padding:8px;background:white}button{cursor:pointer}button:disabled{opacity:.4}input{width:64px;text-align:center}main{padding:16px 8px 35px;max-width:1100px;margin:auto}canvas{display:block;margin:auto;max-width:100%;background:#fff;box-shadow:0 4px 20px #0002}#message{text-align:center;padding:22px 12px;color:#555}#message[hidden]{display:none}.download{color:#555;text-decoration:none;font-size:13px}.download:hover{text-decoration:underline}@media(max-width:520px){header{padding:8px}.brand{width:100%;font-size:14px}nav{width:100%;justify-content:center}button{padding:8px 12px}main{padding:8px 4px 25px}}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#fff">
+  <meta name="description" content="อ่านเอกสารผลงานนวัตกรรม ววน. จาก Google Drive">
+  <title>ผลงานนวัตกรรม ววน. — PDF Viewer</title>
+  <style>
+    :root{font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans Thai",sans-serif;color:#202124;background:#f3f4f6;font-synthesis:none;text-rendering:optimizeLegibility}
+    *{box-sizing:border-box}body{margin:0;min-width:320px}header{position:sticky;top:0;z-index:5;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px max(14px,env(safe-area-inset-left));padding-right:max(14px,env(safe-area-inset-right));background:#fff;border-bottom:1px solid #e1e3e6;box-shadow:0 1px 5px #0000000a}.brand{min-width:0;font-size:15px;font-weight:650;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.controls{display:flex;align-items:center;gap:7px}.controls button,.page-control input{height:38px;border:1px solid #d5d7da;border-radius:8px;background:#fff;color:#202124;font:inherit}.controls button{min-width:38px;padding:0 10px;cursor:pointer}.controls button:disabled{opacity:.42;cursor:default}.controls button:not(:disabled):active{background:#eee}.page-control{display:flex;align-items:center;gap:5px;color:#5f6368;font-size:14px}.page-control input{width:58px;padding:0 7px;text-align:center}.zoom-label{min-width:44px;text-align:center;color:#5f6368;font-size:13px;font-variant-numeric:tabular-nums}main{width:100%;padding:18px 10px 40px}.pages{display:flex;flex-direction:column;align-items:center;gap:16px}.page{position:relative;width:min(100%,900px);min-height:180px;background:#fff;box-shadow:0 2px 12px #00000014;overflow:hidden}.page canvas{display:block;width:100%;height:auto}.status{max-width:620px;margin:12vh auto 0;padding:24px;text-align:center;color:#555;line-height:1.65}.status[hidden]{display:none}.error{color:#8b1e1e}.hint{font-size:13px;color:#777}.loading{height:100%;display:grid;place-items:center;min-height:180px;color:#888;font-size:14px}
+    @media(max-width:600px){header{gap:7px;padding-top:8px;padding-bottom:8px}.brand{max-width:28vw;font-size:13px}.controls{gap:4px}.controls button{min-width:34px;height:36px;padding:0 7px}.page-control{gap:3px;font-size:13px}.page-control input{width:48px;height:36px}.zoom-label{min-width:38px;font-size:12px}main{padding:10px 0 28px}.pages{gap:10px}.page{width:100%;box-shadow:0 1px 6px #00000012}}
+    @media(prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+  </style>
 </head>
 <body>
-<header><span class="brand">ผลงานนวัตกรรม ววน.</span><nav aria-label="PDF navigation"><button id="prev" aria-label="หน้าก่อนหน้า">‹</button><span>หน้า</span><input id="page" type="number" min="1" value="1" aria-label="เลขหน้า"><span id="total">/ …</span><button id="next" aria-label="หน้าถัดไป">›</button></nav><a class="download" href="ผลงานนวัตกรรม ววน.pdf" target="_blank" rel="noopener">เปิดไฟล์ PDF ต้นฉบับ</a></header>
-<main><p id="message">กำลังโหลดเอกสาร…</p><canvas id="viewer" aria-label="หน้าของเอกสาร PDF"></canvas></main>
-<script type="module">
-import * as pdfjsLib from 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.min.mjs';
-pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.worker.min.mjs';
-const FILE='ผลงานนวัตกรรม ววน.pdf';
-const canvas=document.querySelector('#viewer'),ctx=canvas.getContext('2d');
-const pageInput=document.querySelector('#page'),total=document.querySelector('#total'),msg=document.querySelector('#message');
-const prev=document.querySelector('#prev'),next=document.querySelector('#next');
-let pdf=null,current=1,rendering=false,pending=null;
-const requested=Number(new URLSearchParams(location.search).get('page')||location.hash.match(/page=(\d+)/)?.[1]||1);
-const initial=Number.isSafeInteger(requested)&&requested>0?requested:1;
-function setControls(){pageInput.value=current;total.textContent=`/ ${pdf?.numPages??'…'}`;prev.disabled=!pdf||current<=1;next.disabled=!pdf||current>=pdf.numPages}
-async function render(n){if(!pdf)return;if(rendering){pending=n;return}rendering=true;msg.hidden=true;try{const page=await pdf.getPage(n);const base=page.getViewport({scale:1});const availableWidth=Math.min(1000,Math.max(280,document.querySelector('main').clientWidth-8));const scale=availableWidth/base.width;const viewport=page.getViewport({scale});const ratio=Math.min(window.devicePixelRatio||1,2);canvas.width=Math.floor(viewport.width*ratio);canvas.height=Math.floor(viewport.height*ratio);canvas.style.width=`${viewport.width}px`;canvas.style.height=`${viewport.height}px`;await page.render({canvasContext:ctx,viewport,transform:ratio===1?null:[ratio,0,0,ratio,0,0]}).promise}catch(err){msg.hidden=false;msg.textContent=`ไม่สามารถแสดงหน้านี้ได้: ${err.message}`}finally{rendering=false;if(pending!==null){const target=pending;pending=null;if(target!==n)render(target)}}}
-function go(n){if(!pdf)return;const target=Math.max(1,Math.min(pdf.numPages,Math.floor(Number(n)||1)));current=target;setControls();const url=new URL(location.href);url.searchParams.set('page',String(target));history.replaceState(null,'',url);render(target);window.scrollTo({top:0,behavior:'instant'})}
-prev.addEventListener('click',()=>go(current-1));next.addEventListener('click',()=>go(current+1));pageInput.addEventListener('change',()=>go(pageInput.value));pageInput.addEventListener('keydown',e=>{if(e.key==='Enter')pageInput.blur()});
-try{pdf=await pdfjsLib.getDocument(FILE).promise;current=Math.min(initial,pdf.numPages);setControls();go(current)}catch(err){msg.hidden=false;msg.innerHTML='ไม่พบไฟล์ <strong>ผลงานนวัตกรรม ววน.pdf</strong> หรือไม่สามารถโหลดเอกสารได้ กรุณาอัปโหลด PDF ไปไว้ในโฟลเดอร์เดียวกับ index.html';console.error(err)}
-</script>
+  <header>
+    <div class="brand">ผลงานนวัตกรรม ววน.</div>
+    <nav class="controls" aria-label="เครื่องมืออ่าน PDF">
+      <button id="prev" type="button" aria-label="หน้าก่อนหน้า" title="หน้าก่อนหน้า" disabled>‹</button>
+      <label class="page-control"><input id="page" aria-label="เลขหน้า" type="number" min="1" value="4" inputmode="numeric"><span id="total">/ …</span></label>
+      <button id="next" type="button" aria-label="หน้าถัดไป" title="หน้าถัดไป" disabled>›</button>
+      <button id="zoom-out" type="button" aria-label="ย่อ" title="ย่อ">−</button>
+      <span class="zoom-label" id="zoom-label" aria-live="polite">100%</span>
+      <button id="zoom-in" type="button" aria-label="ขยาย" title="ขยาย">+</button>
+    </nav>
+  </header>
+  <main>
+    <p id="message" class="status" role="status">กำลังเชื่อมต่อและโหลดเอกสาร…</p>
+    <div id="pages" class="pages" aria-label="หน้าเอกสาร PDF"></div>
+  </main>
+  <script type="module">
+    import * as pdfjsLib from 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.min.mjs';
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.worker.min.mjs';
+
+    // Set this to the deployed Google Apps Script Web App URL (see README).
+    const PDF_PROXY_URL = '';
+    const DEFAULT_PAGE = 4;
+    const canvasByPage = new Map();
+    const renderedScale = new WeakMap();
+    const renderTasks = new WeakMap();
+    const pageInput = document.querySelector('#page');
+    const total = document.querySelector('#total');
+    const message = document.querySelector('#message');
+    const pagesElement = document.querySelector('#pages');
+    const prev = document.querySelector('#prev');
+    const next = document.querySelector('#next');
+    let pdf = null;
+    let current = DEFAULT_PAGE;
+    let zoom = 1;
+    let observer;
+    let resizeTimer;
+
+    function setMessage(text, isError = false) {
+      message.textContent = text;
+      message.classList.toggle('error', isError);
+      message.hidden = false;
+    }
+    function updateControls() {
+      pageInput.value = String(current);
+      total.textContent = `/ ${pdf?.numPages ?? '…'}`;
+      pageInput.max = String(pdf?.numPages ?? 1);
+      prev.disabled = !pdf || current <= 1;
+      next.disabled = !pdf || current >= pdf.numPages;
+    }
+    function updateUrl(page) {
+      const url = new URL(location.href);
+      url.searchParams.set('page', String(page));
+      history.replaceState(null, '', url);
+    }
+    function go(page) {
+      if (!pdf) return;
+      const target = Math.max(1, Math.min(pdf.numPages, Math.floor(Number(page) || 1)));
+      current = target;
+      updateControls();
+      updateUrl(target);
+      document.querySelector(`[data-page="${target}"]`)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      renderPage(target);
+    }
+    function pageScale(page) {
+      const availableWidth = Math.max(220, pagesElement.clientWidth);
+      return Math.min(availableWidth / page.getViewport({ scale: 1 }).width, 2.5) * zoom;
+    }
+    async function renderPage(pageNumber) {
+      if (!pdf) return;
+      const canvas = canvasByPage.get(pageNumber);
+      if (!canvas) return;
+      const page = await pdf.getPage(pageNumber);
+      const scale = pageScale(page);
+      if (renderedScale.get(canvas) === scale) return;
+      const oldTask = renderTasks.get(canvas);
+      if (oldTask) { oldTask.cancel(); try { await oldTask.promise; } catch (_) {} }
+      const viewport = page.getViewport({ scale });
+      const ratio = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = Math.ceil(viewport.width * ratio);
+      canvas.height = Math.ceil(viewport.height * ratio);
+      canvas.style.width = `${viewport.width}px`;
+      canvas.style.height = `${viewport.height}px`;
+      const context = canvas.getContext('2d', { alpha: false });
+      const task = page.render({ canvasContext: context, viewport, transform: ratio === 1 ? null : [ratio, 0, 0, ratio, 0, 0] });
+      renderTasks.set(canvas, task);
+      try { await task.promise; renderedScale.set(canvas, scale); }
+      catch (err) { if (err?.name !== 'RenderingCancelledException') throw err; }
+      finally { if (renderTasks.get(canvas) === task) renderTasks.delete(canvas); }
+    }
+    function createPageContainers() {
+      const fragment = document.createDocumentFragment();
+      for (let n = 1; n <= pdf.numPages; n++) {
+        const section = document.createElement('section');
+        section.className = 'page';
+        section.dataset.page = String(n);
+        section.setAttribute('aria-label', `หน้า ${n}`);
+        const placeholder = document.createElement('div');
+        placeholder.className = 'loading';
+        placeholder.textContent = `หน้า ${n}`;
+        const canvas = document.createElement('canvas');
+        canvas.setAttribute('role', 'img');
+        canvas.setAttribute('aria-label', `หน้า ${n} ของเอกสาร`);
+        canvas.hidden = true;
+        section.append(placeholder, canvas);
+        section.dataset.placeholder = 'true';
+        canvasByPage.set(n, canvas);
+        fragment.append(section);
+      }
+      pagesElement.replaceChildren(fragment);
+      observer = new IntersectionObserver(entries => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue;
+          const section = entry.target;
+          const n = Number(section.dataset.page);
+          renderPage(n).then(() => {
+            section.querySelector('.loading').hidden = true;
+            const canvas = canvasByPage.get(n);
+            canvas.hidden = false;
+          }).catch(showRenderError);
+        }
+      }, { rootMargin: '900px 0px' });
+      document.querySelectorAll('.page').forEach(section => observer.observe(section));
+      const activeObserver = new IntersectionObserver(entries => {
+        const visible = entries.filter(entry => entry.isIntersecting).sort((a,b) => b.intersectionRatio-a.intersectionRatio)[0];
+        if (visible) {
+          const n = Number(visible.target.dataset.page);
+          if (n !== current) { current = n; updateControls(); updateUrl(n); }
+        }
+      }, { threshold: [0.25, 0.5, 0.75] });
+      document.querySelectorAll('.page').forEach(section => activeObserver.observe(section));
+    }
+    function showRenderError(err) {
+      console.error('PDF page render failed:', err);
+      setMessage('แสดงหน้าเอกสารไม่สำเร็จ กรุณาโหลดหน้าเว็บใหม่หรือลองอีกครั้ง', true);
+    }
+    function loadFromAppsScript() {
+      return new Promise((resolve, reject) => {
+        const callbackName = 'pdfViewerDriveCallback';
+        const timeout = setTimeout(() => { cleanup(); reject(new Error('หมดเวลารอ Google Apps Script')); }, 90000);
+        function cleanup() { clearTimeout(timeout); delete window[callbackName]; script.remove(); }
+        const script = document.createElement('script');
+        window[callbackName] = result => {
+          cleanup();
+          if (!result || result.error) reject(new Error(result?.error || 'ไม่ได้รับข้อมูล PDF'));
+          else if (typeof result.data !== 'string') reject(new Error('รูปแบบข้อมูลจากตัวกลางไม่ถูกต้อง'));
+          else {
+            try {
+              const binary = atob(result.data);
+              const bytes = new Uint8Array(binary.length);
+              for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
+              resolve(bytes);
+            } catch (error) { reject(error); }
+          }
+        };
+        script.onerror = () => { cleanup(); reject(new Error('เรียก Google Apps Script ไม่สำเร็จ ตรวจสอบ URL และสิทธิ์การ Deploy')); };
+        const url = new URL(PDF_PROXY_URL);
+        url.searchParams.set('callback', callbackName);
+        // Unique URL helps avoid stale browser/CDN responses after the Drive file is replaced.
+        url.searchParams.set('v', `${Date.now()}`);
+        script.src = url.toString();
+        document.head.append(script);
+      });
+    }
+    async function start() {
+      if (!PDF_PROXY_URL) {
+        setMessage('ยังไม่ได้ตั้งค่า URL ของ Google Apps Script โปรดทำตามขั้นตอนใน README ก่อนเปิดใช้งาน', true);
+        return;
+      }
+      try {
+        const data = await loadFromAppsScript();
+        pdf = await pdfjsLib.getDocument({ data }).promise;
+        const requested = Number(new URLSearchParams(location.search).get('page') || DEFAULT_PAGE);
+        current = Number.isSafeInteger(requested) && requested > 0 ? Math.min(requested, pdf.numPages) : Math.min(DEFAULT_PAGE, pdf.numPages);
+        createPageContainers();
+        updateControls();
+        message.hidden = true;
+        document.querySelector(`[data-page="${current}"]`)?.scrollIntoView({ behavior: 'instant', block: 'start' });
+        renderPage(current).then(() => {
+          const section = document.querySelector(`[data-page="${current}"]`);
+          section.querySelector('.loading').hidden = true;
+          canvasByPage.get(current).hidden = false;
+        }).catch(showRenderError);
+      } catch (error) {
+        console.error('PDF load failed:', error);
+        const detail = error?.message || 'ไม่ทราบสาเหตุ';
+        setMessage(`โหลด PDF ไม่สำเร็จ (${detail}) กรุณาตรวจสอบการ Deploy Google Apps Script, สิทธิ์เข้าถึงไฟล์ใน Drive และลองใหม่`, true);
+      }
+    }
+    prev.addEventListener('click', () => go(current - 1));
+    next.addEventListener('click', () => go(current + 1));
+    pageInput.addEventListener('change', () => go(pageInput.value));
+    pageInput.addEventListener('keydown', event => { if (event.key === 'Enter') { go(pageInput.value); pageInput.blur(); } });
+    document.querySelector('#zoom-out').addEventListener('click', () => {
+      zoom = Math.max(.6, Math.round((zoom - .15) * 100) / 100);
+      document.querySelector('#zoom-label').textContent = `${Math.round(zoom * 100)}%`;
+      canvasByPage.forEach((_, n) => renderPage(n).catch(showRenderError));
+    });
+    document.querySelector('#zoom-in').addEventListener('click', () => {
+      zoom = Math.min(2.5, Math.round((zoom + .15) * 100) / 100);
+      document.querySelector('#zoom-label').textContent = `${Math.round(zoom * 100)}%`;
+      canvasByPage.forEach((_, n) => renderPage(n).catch(showRenderError));
+    });
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => canvasByPage.forEach((_, n) => renderPage(n).catch(showRenderError)), 150);
+    });
+    start();
+  </script>
 </body>
 </html>
