@@ -85,6 +85,18 @@ Mobile tests use emulation, not physical iPhone/Android devices or native Safari
 
 ## After publication
 
-Production checks will be recorded after the continuous-scroll reader is deployed.
+Runtime commit: `4dd6e74ddc494161af881157c6071f96ddbddc5e`.
+
+- GitHub Pages [deployment](https://github.com/Focus-os-2026/pdf-viewer/actions/runs/42364887027): success.
+- Production HTML and viewer module match the tested files exactly; PDF and original stable mapping remain unchanged.
+- HTTP Range returns `206`, `Content-Range: bytes 0-1023/14344625`, and exactly 1,024 bytes.
+- Native vertical touch, absence of horizontal page switching, rapid scroll reversals, zoom, fullscreen, rotation and error handling pass on the live URL.
+- Live desktop: **53/53 IDs pass**; live mobile emulation: **53/53 IDs pass** — **106/106 total**.
+- Every route initially aligns to its mapped page and preserves its original ID. Native wheel scrolling updates the active page/ID, and far scrolling evicts obsolete canvases without changing document height.
+- Zoom, page jumps, first/last pages, rotation, legacy page links, ID precedence, invalid IDs, hidden tools and same-origin loading checks all pass.
+
+Managed Chromium tests use `TEST_IGNORE_HTTPS_ERRORS=1` to accommodate TLS inspection. Independent HTTPS downloads use inherited CA trust with certificate verification enabled. Application TLS settings were not changed.
+
+[Live HTTP checks](live-http-checks.json).
 
 [Browser checks](browser-results.json) · [PDF source comparisons](pdf-checks.json)
