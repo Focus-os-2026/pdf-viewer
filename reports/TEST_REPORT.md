@@ -84,6 +84,20 @@ Mobile emulation is not a physical-device or native Safari test.
 
 ## After publication
 
-Production verification will be appended after the new PDF is deployed.
+Runtime commit: `f3f2955616efcd2cdd012ebb060c14d2d2442440`.
+
+- GitHub Pages [deployment](https://github.com/Focus-os-2026/pdf-viewer/actions/runs/42362797379): success.
+- Published HTML matches the tested full-viewport interface exactly.
+- The served PDF matches the verified losslessly optimized Drive PDF, and mapping matches the original unchanged mapping.
+- HTTP Range request returns `206`, `Content-Range: bytes 0-1023/14344625`, and exactly 1,024 bytes.
+- Hidden tool toggle, fit, fullscreen entry/exit, touch swipes, keyboard, rotation and error handling pass on the live URL.
+- Live desktop: **53/53 IDs pass**; live mobile emulation: **53/53 IDs pass** — **106/106 total**.
+- Every ID opens its mapped page, shows nonblank artwork fully within the viewport, preserves the initial URL and starts with tools hidden.
+- Branding, instructions and Copy Link are absent on all tested routes.
+- Navigation, zoom, page boundaries, legacy page links, invalid IDs, ID precedence, 320px layout and same-origin loading checks all pass.
+
+Live Chromium uses `TEST_IGNORE_HTTPS_ERRORS=1` for the managed environment's TLS inspection. Independent HTTPS downloads use inherited CA trust with certificate verification enabled. Application TLS settings were not changed.
+
+[HTTP verification](live-http-checks.json).
 
 [Detailed browser results](browser-results.json) · [Source PDF checks](pdf-checks.json)
