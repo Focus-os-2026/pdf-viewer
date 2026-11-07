@@ -11,6 +11,15 @@ Source: [ผลงานนวัตกรรม ววน.pdf](https://drive.go
 - All 53 pages were scanned for decodable QR codes; results are recorded per page in `pdf-checks.json`. This is a record of the supplied document, not a replacement QR set.
 - Served PDF SHA-256: `4295e6c74e8e8a533ad475b55dca62850e9ba71208b444902fb7cef1b4c5334b`.
 
+## Full-viewport interface
+
+- No visible website heading, instructions, Copy Link or Full PDF text button.
+- One small ellipsis toggle; controls are hidden on first load and after page navigation.
+- Artwork fits entirely within the available viewport, centered without cropping or distortion. The layout uses dynamic viewport height and safe-area insets.
+- Icon controls retain accessible labels. Fit-to-screen, zoom and supported browser fullscreen are available in the popup.
+- All 53 IDs in both desktop/mobile profiles pass whole-page fit and hidden-controls checks: no cropping, no header/instructions/Copy Link and no page overflow.
+- Hidden tools, fit, fullscreen entry/exit, touch swipes, keyboard, rotation and error handling pass.
+
 ## Before publication
 
 Chromium desktop (1440×900) and mobile emulation (390×844, DPR 3): **106/106 ID renders pass**, with 53/53 in each profile. Tests confirm the mapped page renders nonblank, retains the initial ID and stays within the canvas memory budget. Navigation, page jumps, zoom, first/last boundaries, legacy page links, invalid IDs, ID precedence and 320px layout pass. All requests stay on the viewer origin.

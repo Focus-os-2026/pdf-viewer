@@ -37,12 +37,32 @@ const base = process.env.TEST_URL || "http://127.0.0.1:8765/";
     const requests = [];
     p.on("pageerror", (e) => errors.push(e.message));
     p.on("request", (r) => requests.push(r.url()));
+    async function tools() {
+      if (await p.locator("#tools").isHidden())
+        await p.locator("#tool-toggle").click();
+    }
+    async function fits() {
+      await p.waitForFunction(() => {
+        const c = document.querySelector("canvas"),
+          paper = document.querySelector("#paper");
+        if (c.hidden) return false;
+        const a = c.getBoundingClientRect(),
+          b = paper.getBoundingClientRect();
+        return (
+          a.left >= b.left - 0.5 &&
+          a.top >= b.top - 0.5 &&
+          a.right <= b.right + 0.5 &&
+          a.bottom <= b.bottom + 0.5 &&
+          Math.min(b.width - a.width, b.height - a.height) < 1
+        );
+      });
+    }
     async function rendered(n) {
       await p
         .locator(`canvas[data-page="${n}"]`)
         .waitFor({ state: "visible", timeout: 30000 });
       assert.equal(await p.locator("#page").inputValue(), String(n));
-      assert.equal(await p.locator("#total").innerText(), "53");
+      assert.equal(await p.locator("#total").textContent(), "53");
       const state = await p.locator("canvas").evaluate((c) => {
         const data = c
           .getContext("2d")
@@ -59,6 +79,10 @@ const base = process.env.TEST_URL || "http://127.0.0.1:8765/";
       const start = Date.now();
       await p.goto(base + "?id=" + id);
       await rendered(n);
+      await fits();
+      assert(await p.locator("#tools").isHidden());
+      assert.equal(await p.locator("header,.brand,.hint,#copy").count(), 0);
+      assert.equal((await p.locator("body").innerText()).trim(), "⋯");
       assert.equal(new URL(p.url()).searchParams.get("id"), id);
       results.push({
         profile: name,
@@ -70,22 +94,25 @@ const base = process.env.TEST_URL || "http://127.0.0.1:8765/";
     }
     await p.goto(base + "?id=12&source=qr");
     await rendered(9);
+    await tools();
     await p.locator("#next").click();
     await rendered(10);
     assert.equal(new URL(p.url()).searchParams.get("id"), "13");
     assert.equal(new URL(p.url()).searchParams.get("source"), "qr");
+    await tools();
     await p.locator("#prev").click();
     await rendered(9);
     const width = await p
       .locator("canvas")
       .evaluate((c) => c.getBoundingClientRect().width);
+    await tools();
     await p.locator("#plus").click();
     await p.waitForFunction(
       (w) => document.querySelector("canvas").getBoundingClientRect().width > w,
       width,
     );
     await rendered(9);
-    assert.equal(await p.locator("#zoom").innerText(), "115%");
+    assert.equal(await p.locator("#zoom").textContent(), "115%");
     await p.locator("#minus").click();
     await rendered(9);
     await p.locator("#page").fill("53");
@@ -94,6 +121,7 @@ const base = process.env.TEST_URL || "http://127.0.0.1:8765/";
     assert.equal(new URL(p.url()).searchParams.get("id"), "77");
     assert(await p.locator("#next").isDisabled());
     assert.match(await p.locator("#full").getAttribute("href"), /#page=53$/);
+    await tools();
     await p.locator("#page").fill("1");
     await p.locator("#page").press("Enter");
     await rendered(1);
@@ -121,6 +149,7 @@ const base = process.env.TEST_URL || "http://127.0.0.1:8765/";
     await rendered(53);
     await p.setViewportSize({ width: 320, height: 640 });
     await rendered(53);
+    await fits();
     assert(
       await p.evaluate(
         () => document.documentElement.scrollWidth <= innerWidth,

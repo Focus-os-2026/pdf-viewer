@@ -6,195 +6,259 @@
       name="viewport"
       content="width=device-width,initial-scale=1,viewport-fit=cover"
     />
-    <meta name="theme-color" content="#ffffff" />
-    <title>Innovation Showcase — PDF Viewer</title>
+    <meta name="theme-color" content="#101112" />
+    <title>ผลงานนวัตกรรม ววน.</title>
     <style>
       :root {
         font:
-          14px/1.45 Inter,
-          system-ui,
+          14px/1.4 system-ui,
           -apple-system,
           "Noto Sans Thai",
           sans-serif;
-        color: #202124;
-        background: #f5f6f7;
+        color: #fff;
+        background: #101112;
+        color-scheme: dark;
       }
       * {
         box-sizing: border-box;
       }
+      [hidden] {
+        display: none !important;
+      }
+      html,
       body {
         margin: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
       }
-      header {
-        position: sticky;
-        top: 0;
-        z-index: 3;
-        background: white;
-        border-bottom: 1px solid #e4e5e7;
-        padding: 10px 16px;
+      main {
+        position: fixed;
+        inset: 0;
+        width: 100%;
+        height: 100vh;
+        height: 100dvh;
+        padding: env(safe-area-inset-top) env(safe-area-inset-right)
+          env(safe-area-inset-bottom) env(safe-area-inset-left);
+      }
+      .paper {
+        width: 100%;
+        height: 100%;
         display: flex;
-        align-items: center;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        gap: 8px;
+        align-items: flex-start;
+        justify-content: flex-start;
+        overflow: auto;
+        overscroll-behavior: contain;
+        scrollbar-width: none;
       }
-      .brand {
-        font-weight: 750;
-        letter-spacing: -0.2px;
+      .paper::-webkit-scrollbar {
+        display: none;
       }
-      .tools {
-        display: flex;
-        gap: 6px;
-        align-items: center;
-        flex-wrap: wrap;
+      canvas {
+        display: block;
+        flex-shrink: 0;
+        margin: auto;
+      }
+      #status {
+        margin: auto;
+        padding: 24px;
+        max-width: 560px;
+        text-align: center;
+        color: #fff;
+        line-height: 1.6;
+      }
+      #status:not(.error)::after {
+        content: "";
+        display: block;
+        margin: auto;
+        width: 28px;
+        height: 28px;
+        border: 2px solid #ffffff30;
+        border-top-color: #fff;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        #status:not(.error)::after {
+          animation: none;
+          border-style: dotted;
+        }
+      }
+      #tool-dock {
+        position: fixed;
+        z-index: 5;
+        right: max(10px, env(safe-area-inset-right));
+        bottom: max(10px, env(safe-area-inset-bottom));
       }
       button,
       a.tool,
       input {
-        background: white;
-        border: 1px solid #dadddf;
-        border-radius: 8px;
-        padding: 7px 10px;
         font: inherit;
-        color: #202124;
+        color: #fff;
+        background: #22262bd9;
+        border: 1px solid #ffffff24;
+        border-radius: 10px;
+        min-width: 44px;
+        min-height: 44px;
+        padding: 8px;
+        touch-action: manipulation;
+      }
+      button,
+      a.tool {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
         cursor: pointer;
         text-decoration: none;
-        min-height: 35px;
+      }
+      button:disabled,
+      input:disabled {
+        opacity: 0.35;
+        cursor: default;
+      }
+      button:focus-visible,
+      a:focus-visible,
+      input:focus-visible {
+        outline: 2px solid #fff;
+        outline-offset: 2px;
       }
       button:hover,
       a.tool:hover {
-        background: #f1f2f3;
+        background: #394047;
       }
-      button:disabled {
-        opacity: 0.4;
-        cursor: default;
+      #tool-toggle {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        font-size: 24px;
+        line-height: 1;
+        opacity: 0.5;
+        box-shadow: 0 2px 12px #0003;
       }
-      input {
-        width: 58px;
-        text-align: center;
+      #tool-toggle:hover,
+      #tool-toggle:focus-visible,
+      #tool-toggle[aria-expanded="true"] {
+        opacity: 1;
       }
-      main {
-        width: 100%;
-        max-width: 1000px;
-        margin: 0 auto;
-        padding: 16px;
-      }
-      .paper {
-        margin: auto;
-        background: white;
-        box-shadow: 0 3px 16px #00000012;
-        min-height: 200px;
+      .tools {
+        position: absolute;
+        right: 0;
+        bottom: 54px;
         display: flex;
+        flex-wrap: wrap;
         align-items: center;
         justify-content: center;
-        overflow: hidden;
+        gap: 6px;
+        width: max-content;
+        max-width: calc(100vw - 20px);
+        padding: 8px;
+        border: 1px solid #ffffff20;
+        border-radius: 14px;
+        background: #171a1fe8;
+        backdrop-filter: blur(12px);
+        box-shadow: 0 4px 24px #0005;
       }
-      .paper canvas {
-        display: block;
-        flex-shrink: 0;
-        height: auto;
-      }
-      .paper {
-        overflow: auto;
-        justify-content: flex-start;
-      }
-      .paper canvas {
-        margin: auto;
-      }
-      .paper [hidden] {
-        display: none;
-      }
-      button,
-      a.tool,
-      input {
-        min-height: 44px;
-      }
-      #status {
-        width: 100%;
-      }
-      #status {
-        text-align: center;
-        padding: 20px;
-        max-width: 600px;
-        margin: 0 auto;
-        color: #65676b;
-      }
-      #status.error {
-        color: #a02323;
-      }
-      .hint {
-        color: #7a7c80;
-        text-align: center;
-        font-size: 12px;
-        margin: 12px 0;
+      .tools button {
+        font-size: 22px;
       }
       .pagecounter {
+        display: flex;
+        align-items: center;
+        gap: 4px;
         font-variant-numeric: tabular-nums;
         white-space: nowrap;
       }
-      @media (max-width: 600px) {
-        header {
-          padding: 8px;
-        }
-        .brand {
-          font-size: 12px;
-          width: 100%;
-        }
-        .tools {
-          width: 100%;
-          justify-content: center;
-          gap: 4px;
-        }
-        .tools button,
-        .tools a.tool {
-          padding: 6px 8px;
-        }
-        main {
-          padding: 8px 0;
-        }
+      #page {
+        width: 52px;
+        min-width: 0;
+        text-align: center;
+        appearance: textfield;
+      }
+      #page::-webkit-inner-spin-button,
+      #page::-webkit-outer-spin-button {
+        appearance: none;
+        margin: 0;
+      }
+      svg {
+        width: 19px;
+        height: 19px;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 1.8;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        overflow: hidden;
+        clip-path: inset(50%);
+        white-space: nowrap;
       }
     </style>
   </head>
   <body>
-    <header>
-      <div class="brand">Innovation Showcase · PDF Viewer</div>
-      <nav class="tools" aria-label="PDF controls">
-        <button id="prev" disabled aria-label="Previous page">‹</button>
-        <span class="pagecounter"
+    <main aria-label="เอกสาร PDF">
+      <div class="paper" id="paper">
+        <p id="status" role="status" aria-label="กำลังโหลดเอกสาร"></p>
+        <canvas id="canvas" hidden aria-label="หน้าเอกสาร PDF"></canvas>
+      </div>
+    </main>
+    <div id="tool-dock">
+      <nav id="tools" class="tools" aria-label="เครื่องมืออ่าน PDF" hidden>
+        <button id="prev" disabled aria-label="หน้าก่อนหน้า">‹</button>
+        <label class="pagecounter"
           ><input
             id="page"
             type="number"
             min="1"
             value="1"
-            aria-label="Page number"
-          />
-          / <span id="total">…</span></span
+            inputmode="numeric"
+            aria-label="เลขหน้า"
+          /><span aria-hidden="true">/</span><span id="total">…</span></label
         >
-        <button id="next" disabled aria-label="Next page">›</button>
-        <button id="minus" aria-label="Zoom out">−</button
-        ><span id="zoom">100%</span
-        ><button id="plus" aria-label="Zoom in">+</button>
-        <button id="copy" aria-label="Copy link">Copy Link</button>
+        <button id="next" disabled aria-label="หน้าถัดไป">›</button>
+        <button id="minus" aria-label="ย่อ">−</button
+        ><span id="zoom" class="sr-only" aria-live="polite">100%</span
+        ><button id="plus" aria-label="ขยาย">+</button>
+        <button id="fit" aria-label="ปรับงานให้พอดีจอ">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5M8 8h8v8H8z" />
+          </svg>
+        </button>
+        <button id="fullscreen" aria-label="เปิดหรือออกจากโหมดเต็มหน้าจอ">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5" />
+          </svg>
+        </button>
         <a
           class="tool"
           id="full"
           href="./innovation-final.pdf"
           target="_blank"
           rel="noopener noreferrer"
-          >Full PDF</a
-        >
+          aria-label="เปิด PDF ทั้งเล่ม"
+          ><svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M14 3h7v7m0-7L10 14M10 3H3v18h18v-7" /></svg
+        ></a>
       </nav>
-    </header>
-    <main>
-      <div class="paper" id="paper">
-        <p id="status" role="status">กำลังโหลดเอกสาร…</p>
-        <canvas id="canvas" hidden aria-label="PDF page"></canvas>
-      </div>
-      <p class="hint">
-        เปลี่ยนหน้าโดยใช้ปุ่ม ‹ › หรือปุ่มลูกศรบนคีย์บอร์ด ·
-        บนมือถือปัดซ้าย–ขวาได้
-      </p>
-    </main>
+      <button
+        id="tool-toggle"
+        type="button"
+        aria-label="เครื่องมืออ่าน PDF"
+        aria-expanded="false"
+        aria-controls="tools"
+      >
+        ⋯
+      </button>
+    </div>
     <script type="module">
       import * as pdfjsLib from "./vendor/pdfjs/pdf.min.mjs";
       pdfjsLib.GlobalWorkerOptions.workerSrc =
@@ -220,13 +284,14 @@
         renderSerial = 0,
         mapping = null;
       function show(message, error = false) {
-        UI.status.textContent = message;
+        UI.status.textContent = error ? message : "";
+        UI.status.setAttribute("aria-label", message);
         UI.status.classList.toggle("error", error);
         UI.status.hidden = false;
         UI.canvas.hidden = true;
       }
       function controls() {
-        for (const selector of ["#page", "#minus", "#plus", "#copy"])
+        for (const selector of ["#page", "#minus", "#plus"])
           $(selector).disabled = !ready;
         UI.page.value = current;
         UI.total.textContent = doc?.numPages ?? "…";
@@ -286,11 +351,10 @@
           const page = await doc.getPage(pageNo);
           if (serial !== renderSerial) return;
           const base = page.getViewport({ scale: 1 });
-          const available = Math.max(
-            240,
-            Math.min(970, window.innerWidth - 24),
-          );
-          const scale = Math.min(available / base.width, 2.5) * factor;
+          const width = Math.max(1, $("#paper").clientWidth);
+          const height = Math.max(1, $("#paper").clientHeight);
+          const scale =
+            Math.min(width / base.width, height / base.height) * factor;
           const viewport = page.getViewport({ scale });
           const dpr = Math.min(
             devicePixelRatio || 1,
@@ -334,6 +398,7 @@
         if (num === current && UI.status.hidden) return;
         current = num;
         if (update) setUrl(num);
+        showTools(false);
         render();
       }
       async function start() {
@@ -383,8 +448,9 @@
           doc = null;
           controls();
           show(
-            (err?.message || "ไม่สามารถเปิดเอกสารได้") +
-              " — ตรวจสอบว่าอัปโหลด innovation-final.pdf และ mapping.json แล้ว",
+            /^[ก-๙]/.test(err?.message || "")
+              ? err.message
+              : "เปิดเอกสารไม่สำเร็จ กรุณาโหลดหน้าเว็บใหม่",
             true,
           );
         }
@@ -406,23 +472,8 @@
         factor = Math.min(2.5, Math.round((factor + 0.15) * 100) / 100);
         render();
       };
-      $("#copy").onclick = async () => {
-        const u = new URL(location.href);
-        u.searchParams.delete("page");
-        const id = Object.entries(mapping?.idToPage || {}).find(
-          ([, p]) => p === current,
-        )?.[0];
-        if (id) u.searchParams.set("id", id);
-        else u.searchParams.set("page", String(current));
-        try {
-          await navigator.clipboard.writeText(u.href);
-          $("#copy").textContent = "Copied ✓";
-          setTimeout(() => ($("#copy").textContent = "Copy Link"), 1300);
-        } catch {
-          prompt("Copy link", u.href);
-        }
-      };
       addEventListener("keydown", (e) => {
+        if (e.key === "Escape") showTools(false);
         if (e.target instanceof HTMLInputElement) return;
         if (e.key === "ArrowLeft") go(current - 1);
         if (e.key === "ArrowRight") go(current + 1);
@@ -452,13 +503,43 @@
         },
         { passive: true },
       );
+
+      function showTools(open) {
+        $("#tools").hidden = !open;
+        $("#tool-toggle").setAttribute("aria-expanded", String(open));
+        if (!open && $("#tools").contains(document.activeElement))
+          $("#tool-toggle").focus({ preventScroll: true });
+      }
+      $("#tool-toggle").onclick = () => showTools($("#tools").hidden);
+      document.addEventListener("pointerdown", (event) => {
+        if (!$("#tool-dock").contains(event.target)) showTools(false);
+      });
+      $("#fit").onclick = () => {
+        factor = 1;
+        render();
+        showTools(false);
+      };
+      $("#full").addEventListener("click", () => showTools(false));
+      $("#fullscreen").hidden = !document.fullscreenEnabled;
+      $("#fullscreen").onclick = async () => {
+        try {
+          if (document.fullscreenElement) await document.exitFullscreen();
+          else await document.documentElement.requestFullscreen();
+          showTools(false);
+        } catch (error) {
+          console.warn("Fullscreen unavailable", error);
+        }
+      };
       let resizeHandle;
-      addEventListener("resize", () => {
+      function resize() {
         clearTimeout(resizeHandle);
         resizeHandle = setTimeout(() => {
           if (doc) render();
-        }, 250);
-      });
+        }, 150);
+      }
+      new ResizeObserver(resize).observe($("#paper"));
+      addEventListener("resize", resize);
+      document.addEventListener("fullscreenchange", resize);
       controls();
       start();
     </script>

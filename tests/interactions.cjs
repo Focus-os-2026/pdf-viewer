@@ -10,7 +10,6 @@ const assert = require("node:assert/strict");
     viewport: { width: 390, height: 844 },
     isMobile: true,
     hasTouch: true,
-    permissions: ["clipboard-read", "clipboard-write"],
     ignoreHTTPSErrors: process.env.TEST_IGNORE_HTTPS_ERRORS === "1",
   });
   const p = await context.newPage();
@@ -21,11 +20,31 @@ const assert = require("node:assert/strict");
     p.locator(`canvas[data-page="${n}"]`).waitFor({ state: "visible" });
   await p.goto(url + "?id=12");
   await wait(9);
-  await p.locator("#copy").click();
-  assert.equal(
-    await p.evaluate(() => navigator.clipboard.readText()),
-    url + "?id=12",
+  assert.equal(await p.locator("#copy,header,.hint,.brand").count(), 0);
+  assert(await p.locator("#tools").isHidden());
+  await p.locator("#tool-toggle").click();
+  assert(await p.locator("#tools").isVisible());
+  await p.locator("#plus").click();
+  await p.waitForFunction(
+    () =>
+      document.querySelector("#zoom").textContent === "115%" &&
+      !document.querySelector("canvas").hidden,
   );
+  await p.locator("#fit").click();
+  await wait(9);
+  assert.equal(await p.locator("#zoom").textContent(), "100%");
+  assert(await p.locator("#tools").isHidden());
+  if (await p.evaluate(() => document.fullscreenEnabled)) {
+    await p.locator("#tool-toggle").click();
+    await p.locator("#fullscreen").click();
+    await p.waitForFunction(() => !!document.fullscreenElement);
+    await p.locator("#tool-toggle").click();
+    await p.locator("#fullscreen").click();
+    await p.waitForFunction(() => !document.fullscreenElement);
+  }
+  await p.locator("#tool-toggle").click();
+  await p.locator("canvas").click({ position: { x: 30, y: 30 } });
+  assert(await p.locator("#tools").isHidden());
   await p.locator("canvas").evaluate((c) => {
     const touch = (x, y) =>
       new Touch({ identifier: 1, target: c, clientX: x, clientY: y });
@@ -45,6 +64,14 @@ const assert = require("node:assert/strict");
   await wait(19);
   await p.setViewportSize({ width: 844, height: 390 });
   await wait(19);
+  await p.waitForFunction(() => {
+    const c = document.querySelector("canvas").getBoundingClientRect();
+    return (
+      !document.querySelector("canvas").hidden &&
+      c.width <= innerWidth + 0.5 &&
+      c.height <= innerHeight + 0.5
+    );
+  });
   assert.deepEqual(errors, []);
   await p.route("**/mapping.json", (r) =>
     r.fulfill({
@@ -64,7 +91,7 @@ const assert = require("node:assert/strict");
   await p.locator("#status.error").waitFor();
   assert(await p.locator("canvas").isHidden());
   console.log(
-    "Copy, swipe, keyboard, rapid navigation, rotation, corrupt mapping and missing PDF: PASS",
+    "Hidden tools, fit, fullscreen, swipe, keyboard, rotation and error handling: PASS",
   );
   await b.close();
 })().catch((e) => {
