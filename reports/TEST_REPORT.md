@@ -78,4 +78,20 @@ All 53 PDF QR images decode to `https://www.canvaqr.com/RGW79QqjiH`, redirecting
 
 Detailed data: [browser-results.json](browser-results.json), [pdf-checks.json](pdf-checks.json).
 
-Live-site verification will be recorded after deployment.
+## Live-site verification
+
+Published runtime commit: `78c1620c9b213a6fa1d434440fc2baf4cf4c3b28`.
+
+- GitHub Pages [deployment run](https://github.com/Focus-os-2026/pdf-viewer/actions/runs/42360340485): success.
+- Root HTML matches the tested version exactly. The deployed PDF and mapping match the supplied originals byte-for-byte.
+- PDF range request: HTTP 206; `Content-Range: bytes 0-1023/2260586`; 1,024 bytes returned.
+- Browser interaction and error-path suite passes on the published URL.
+- Live Chromium desktop: 53/53 mapped IDs render correctly.
+- Live Chromium mobile emulation: 53/53 mapped IDs render correctly.
+- Live total: 106/106 ID render checks pass, plus navigation, zoom, copy, synthetic touch swipe, keyboard, rapid navigation, rotation and error-path checks.
+- No Cloud Run, Drive or external CDN requests were made by the active viewer.
+
+The managed Chromium tests use `TEST_IGNORE_HTTPS_ERRORS=1` to accommodate the environment's TLS inspection. Independent HTTPS downloads use curl/Python with the inherited CA trust and TLS verification enabled. Application TLS settings were not changed.
+
+Detailed HTTP evidence: [live-http-checks.json](live-http-checks.json).
+

@@ -25,4 +25,4 @@ All 53 embedded QR codes decode to the same Canva URL, `https://www.canvaqr.com/
 
 The user explicitly confirmed publication of the supplied PDF unchanged, retaining all embedded QR codes. This finding is recorded separately from viewer ID-routing checks; it is not counted as a successful QR-to-content match.
 
-For later final exports, verify the mapping against the actual page order and publish the PDF and mapping in the same commit. Prior production commit: `4dc0f14c1e755d4282930b792ff773fc479e8e44`.
+For later final exports, verify the mapping against the actual page order, update the PDF_URL content revision in index.html, and publish the PDF, viewer and mapping in the same commit. Prior production commit: `4dc0f14c1e755d4282930b792ff773fc479e8e44`.
