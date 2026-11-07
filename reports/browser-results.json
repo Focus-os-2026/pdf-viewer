@@ -1,0 +1,748 @@
+{
+  "base": "http://127.0.0.1:8765/",
+  "results": [
+    {
+      "profile": "desktop",
+      "id": "1",
+      "page": 1,
+      "result": "PASS",
+      "elapsedMs": 1493
+    },
+    {
+      "profile": "desktop",
+      "id": "2",
+      "page": 2,
+      "result": "PASS",
+      "elapsedMs": 1030
+    },
+    {
+      "profile": "desktop",
+      "id": "3",
+      "page": 3,
+      "result": "PASS",
+      "elapsedMs": 988
+    },
+    {
+      "profile": "desktop",
+      "id": "4",
+      "page": 4,
+      "result": "PASS",
+      "elapsedMs": 982
+    },
+    {
+      "profile": "desktop",
+      "id": "5",
+      "page": 5,
+      "result": "PASS",
+      "elapsedMs": 924
+    },
+    {
+      "profile": "desktop",
+      "id": "6",
+      "page": 6,
+      "result": "PASS",
+      "elapsedMs": 998
+    },
+    {
+      "profile": "desktop",
+      "id": "7",
+      "page": 7,
+      "result": "PASS",
+      "elapsedMs": 962
+    },
+    {
+      "profile": "desktop",
+      "id": "8",
+      "page": 8,
+      "result": "PASS",
+      "elapsedMs": 1016
+    },
+    {
+      "profile": "desktop",
+      "id": "12",
+      "page": 9,
+      "result": "PASS",
+      "elapsedMs": 944
+    },
+    {
+      "profile": "desktop",
+      "id": "13",
+      "page": 10,
+      "result": "PASS",
+      "elapsedMs": 954
+    },
+    {
+      "profile": "desktop",
+      "id": "14",
+      "page": 11,
+      "result": "PASS",
+      "elapsedMs": 959
+    },
+    {
+      "profile": "desktop",
+      "id": "15",
+      "page": 12,
+      "result": "PASS",
+      "elapsedMs": 966
+    },
+    {
+      "profile": "desktop",
+      "id": "16",
+      "page": 13,
+      "result": "PASS",
+      "elapsedMs": 959
+    },
+    {
+      "profile": "desktop",
+      "id": "17",
+      "page": 14,
+      "result": "PASS",
+      "elapsedMs": 1100
+    },
+    {
+      "profile": "desktop",
+      "id": "18",
+      "page": 15,
+      "result": "PASS",
+      "elapsedMs": 948
+    },
+    {
+      "profile": "desktop",
+      "id": "19",
+      "page": 16,
+      "result": "PASS",
+      "elapsedMs": 937
+    },
+    {
+      "profile": "desktop",
+      "id": "20",
+      "page": 17,
+      "result": "PASS",
+      "elapsedMs": 1045
+    },
+    {
+      "profile": "desktop",
+      "id": "21",
+      "page": 18,
+      "result": "PASS",
+      "elapsedMs": 947
+    },
+    {
+      "profile": "desktop",
+      "id": "22",
+      "page": 19,
+      "result": "PASS",
+      "elapsedMs": 985
+    },
+    {
+      "profile": "desktop",
+      "id": "23",
+      "page": 20,
+      "result": "PASS",
+      "elapsedMs": 1002
+    },
+    {
+      "profile": "desktop",
+      "id": "25",
+      "page": 21,
+      "result": "PASS",
+      "elapsedMs": 933
+    },
+    {
+      "profile": "desktop",
+      "id": "26",
+      "page": 22,
+      "result": "PASS",
+      "elapsedMs": 907
+    },
+    {
+      "profile": "desktop",
+      "id": "27",
+      "page": 23,
+      "result": "PASS",
+      "elapsedMs": 970
+    },
+    {
+      "profile": "desktop",
+      "id": "30",
+      "page": 24,
+      "result": "PASS",
+      "elapsedMs": 1010
+    },
+    {
+      "profile": "desktop",
+      "id": "33",
+      "page": 25,
+      "result": "PASS",
+      "elapsedMs": 925
+    },
+    {
+      "profile": "desktop",
+      "id": "42",
+      "page": 26,
+      "result": "PASS",
+      "elapsedMs": 952
+    },
+    {
+      "profile": "desktop",
+      "id": "45",
+      "page": 27,
+      "result": "PASS",
+      "elapsedMs": 941
+    },
+    {
+      "profile": "desktop",
+      "id": "49",
+      "page": 28,
+      "result": "PASS",
+      "elapsedMs": 928
+    },
+    {
+      "profile": "desktop",
+      "id": "51",
+      "page": 29,
+      "result": "PASS",
+      "elapsedMs": 930
+    },
+    {
+      "profile": "desktop",
+      "id": "52",
+      "page": 30,
+      "result": "PASS",
+      "elapsedMs": 941
+    },
+    {
+      "profile": "desktop",
+      "id": "53",
+      "page": 31,
+      "result": "PASS",
+      "elapsedMs": 956
+    },
+    {
+      "profile": "desktop",
+      "id": "54",
+      "page": 32,
+      "result": "PASS",
+      "elapsedMs": 919
+    },
+    {
+      "profile": "desktop",
+      "id": "55",
+      "page": 33,
+      "result": "PASS",
+      "elapsedMs": 942
+    },
+    {
+      "profile": "desktop",
+      "id": "56",
+      "page": 34,
+      "result": "PASS",
+      "elapsedMs": 1042
+    },
+    {
+      "profile": "desktop",
+      "id": "57",
+      "page": 35,
+      "result": "PASS",
+      "elapsedMs": 940
+    },
+    {
+      "profile": "desktop",
+      "id": "58",
+      "page": 36,
+      "result": "PASS",
+      "elapsedMs": 925
+    },
+    {
+      "profile": "desktop",
+      "id": "59",
+      "page": 37,
+      "result": "PASS",
+      "elapsedMs": 964
+    },
+    {
+      "profile": "desktop",
+      "id": "60",
+      "page": 38,
+      "result": "PASS",
+      "elapsedMs": 956
+    },
+    {
+      "profile": "desktop",
+      "id": "61",
+      "page": 39,
+      "result": "PASS",
+      "elapsedMs": 936
+    },
+    {
+      "profile": "desktop",
+      "id": "62",
+      "page": 40,
+      "result": "PASS",
+      "elapsedMs": 986
+    },
+    {
+      "profile": "desktop",
+      "id": "64",
+      "page": 41,
+      "result": "PASS",
+      "elapsedMs": 947
+    },
+    {
+      "profile": "desktop",
+      "id": "65",
+      "page": 42,
+      "result": "PASS",
+      "elapsedMs": 939
+    },
+    {
+      "profile": "desktop",
+      "id": "66",
+      "page": 43,
+      "result": "PASS",
+      "elapsedMs": 923
+    },
+    {
+      "profile": "desktop",
+      "id": "68",
+      "page": 44,
+      "result": "PASS",
+      "elapsedMs": 979
+    },
+    {
+      "profile": "desktop",
+      "id": "69",
+      "page": 45,
+      "result": "PASS",
+      "elapsedMs": 1023
+    },
+    {
+      "profile": "desktop",
+      "id": "70",
+      "page": 46,
+      "result": "PASS",
+      "elapsedMs": 930
+    },
+    {
+      "profile": "desktop",
+      "id": "71",
+      "page": 47,
+      "result": "PASS",
+      "elapsedMs": 986
+    },
+    {
+      "profile": "desktop",
+      "id": "72",
+      "page": 48,
+      "result": "PASS",
+      "elapsedMs": 1092
+    },
+    {
+      "profile": "desktop",
+      "id": "73",
+      "page": 49,
+      "result": "PASS",
+      "elapsedMs": 1039
+    },
+    {
+      "profile": "desktop",
+      "id": "74",
+      "page": 50,
+      "result": "PASS",
+      "elapsedMs": 938
+    },
+    {
+      "profile": "desktop",
+      "id": "75",
+      "page": 51,
+      "result": "PASS",
+      "elapsedMs": 948
+    },
+    {
+      "profile": "desktop",
+      "id": "76",
+      "page": 52,
+      "result": "PASS",
+      "elapsedMs": 961
+    },
+    {
+      "profile": "desktop",
+      "id": "77",
+      "page": 53,
+      "result": "PASS",
+      "elapsedMs": 979
+    },
+    {
+      "profile": "mobile",
+      "id": "1",
+      "page": 1,
+      "result": "PASS",
+      "elapsedMs": 1271
+    },
+    {
+      "profile": "mobile",
+      "id": "2",
+      "page": 2,
+      "result": "PASS",
+      "elapsedMs": 924
+    },
+    {
+      "profile": "mobile",
+      "id": "3",
+      "page": 3,
+      "result": "PASS",
+      "elapsedMs": 420
+    },
+    {
+      "profile": "mobile",
+      "id": "4",
+      "page": 4,
+      "result": "PASS",
+      "elapsedMs": 915
+    },
+    {
+      "profile": "mobile",
+      "id": "5",
+      "page": 5,
+      "result": "PASS",
+      "elapsedMs": 982
+    },
+    {
+      "profile": "mobile",
+      "id": "6",
+      "page": 6,
+      "result": "PASS",
+      "elapsedMs": 932
+    },
+    {
+      "profile": "mobile",
+      "id": "7",
+      "page": 7,
+      "result": "PASS",
+      "elapsedMs": 397
+    },
+    {
+      "profile": "mobile",
+      "id": "8",
+      "page": 8,
+      "result": "PASS",
+      "elapsedMs": 411
+    },
+    {
+      "profile": "mobile",
+      "id": "12",
+      "page": 9,
+      "result": "PASS",
+      "elapsedMs": 913
+    },
+    {
+      "profile": "mobile",
+      "id": "13",
+      "page": 10,
+      "result": "PASS",
+      "elapsedMs": 957
+    },
+    {
+      "profile": "mobile",
+      "id": "14",
+      "page": 11,
+      "result": "PASS",
+      "elapsedMs": 914
+    },
+    {
+      "profile": "mobile",
+      "id": "15",
+      "page": 12,
+      "result": "PASS",
+      "elapsedMs": 933
+    },
+    {
+      "profile": "mobile",
+      "id": "16",
+      "page": 13,
+      "result": "PASS",
+      "elapsedMs": 907
+    },
+    {
+      "profile": "mobile",
+      "id": "17",
+      "page": 14,
+      "result": "PASS",
+      "elapsedMs": 426
+    },
+    {
+      "profile": "mobile",
+      "id": "18",
+      "page": 15,
+      "result": "PASS",
+      "elapsedMs": 903
+    },
+    {
+      "profile": "mobile",
+      "id": "19",
+      "page": 16,
+      "result": "PASS",
+      "elapsedMs": 430
+    },
+    {
+      "profile": "mobile",
+      "id": "20",
+      "page": 17,
+      "result": "PASS",
+      "elapsedMs": 952
+    },
+    {
+      "profile": "mobile",
+      "id": "21",
+      "page": 18,
+      "result": "PASS",
+      "elapsedMs": 948
+    },
+    {
+      "profile": "mobile",
+      "id": "22",
+      "page": 19,
+      "result": "PASS",
+      "elapsedMs": 962
+    },
+    {
+      "profile": "mobile",
+      "id": "23",
+      "page": 20,
+      "result": "PASS",
+      "elapsedMs": 971
+    },
+    {
+      "profile": "mobile",
+      "id": "25",
+      "page": 21,
+      "result": "PASS",
+      "elapsedMs": 935
+    },
+    {
+      "profile": "mobile",
+      "id": "26",
+      "page": 22,
+      "result": "PASS",
+      "elapsedMs": 908
+    },
+    {
+      "profile": "mobile",
+      "id": "27",
+      "page": 23,
+      "result": "PASS",
+      "elapsedMs": 935
+    },
+    {
+      "profile": "mobile",
+      "id": "30",
+      "page": 24,
+      "result": "PASS",
+      "elapsedMs": 962
+    },
+    {
+      "profile": "mobile",
+      "id": "33",
+      "page": 25,
+      "result": "PASS",
+      "elapsedMs": 1023
+    },
+    {
+      "profile": "mobile",
+      "id": "42",
+      "page": 26,
+      "result": "PASS",
+      "elapsedMs": 942
+    },
+    {
+      "profile": "mobile",
+      "id": "45",
+      "page": 27,
+      "result": "PASS",
+      "elapsedMs": 937
+    },
+    {
+      "profile": "mobile",
+      "id": "49",
+      "page": 28,
+      "result": "PASS",
+      "elapsedMs": 942
+    },
+    {
+      "profile": "mobile",
+      "id": "51",
+      "page": 29,
+      "result": "PASS",
+      "elapsedMs": 1003
+    },
+    {
+      "profile": "mobile",
+      "id": "52",
+      "page": 30,
+      "result": "PASS",
+      "elapsedMs": 458
+    },
+    {
+      "profile": "mobile",
+      "id": "53",
+      "page": 31,
+      "result": "PASS",
+      "elapsedMs": 954
+    },
+    {
+      "profile": "mobile",
+      "id": "54",
+      "page": 32,
+      "result": "PASS",
+      "elapsedMs": 936
+    },
+    {
+      "profile": "mobile",
+      "id": "55",
+      "page": 33,
+      "result": "PASS",
+      "elapsedMs": 1007
+    },
+    {
+      "profile": "mobile",
+      "id": "56",
+      "page": 34,
+      "result": "PASS",
+      "elapsedMs": 958
+    },
+    {
+      "profile": "mobile",
+      "id": "57",
+      "page": 35,
+      "result": "PASS",
+      "elapsedMs": 968
+    },
+    {
+      "profile": "mobile",
+      "id": "58",
+      "page": 36,
+      "result": "PASS",
+      "elapsedMs": 922
+    },
+    {
+      "profile": "mobile",
+      "id": "59",
+      "page": 37,
+      "result": "PASS",
+      "elapsedMs": 954
+    },
+    {
+      "profile": "mobile",
+      "id": "60",
+      "page": 38,
+      "result": "PASS",
+      "elapsedMs": 924
+    },
+    {
+      "profile": "mobile",
+      "id": "61",
+      "page": 39,
+      "result": "PASS",
+      "elapsedMs": 927
+    },
+    {
+      "profile": "mobile",
+      "id": "62",
+      "page": 40,
+      "result": "PASS",
+      "elapsedMs": 913
+    },
+    {
+      "profile": "mobile",
+      "id": "64",
+      "page": 41,
+      "result": "PASS",
+      "elapsedMs": 937
+    },
+    {
+      "profile": "mobile",
+      "id": "65",
+      "page": 42,
+      "result": "PASS",
+      "elapsedMs": 415
+    },
+    {
+      "profile": "mobile",
+      "id": "66",
+      "page": 43,
+      "result": "PASS",
+      "elapsedMs": 932
+    },
+    {
+      "profile": "mobile",
+      "id": "68",
+      "page": 44,
+      "result": "PASS",
+      "elapsedMs": 991
+    },
+    {
+      "profile": "mobile",
+      "id": "69",
+      "page": 45,
+      "result": "PASS",
+      "elapsedMs": 970
+    },
+    {
+      "profile": "mobile",
+      "id": "70",
+      "page": 46,
+      "result": "PASS",
+      "elapsedMs": 938
+    },
+    {
+      "profile": "mobile",
+      "id": "71",
+      "page": 47,
+      "result": "PASS",
+      "elapsedMs": 954
+    },
+    {
+      "profile": "mobile",
+      "id": "72",
+      "page": 48,
+      "result": "PASS",
+      "elapsedMs": 973
+    },
+    {
+      "profile": "mobile",
+      "id": "73",
+      "page": 49,
+      "result": "PASS",
+      "elapsedMs": 1124
+    },
+    {
+      "profile": "mobile",
+      "id": "74",
+      "page": 50,
+      "result": "PASS",
+      "elapsedMs": 934
+    },
+    {
+      "profile": "mobile",
+      "id": "75",
+      "page": 51,
+      "result": "PASS",
+      "elapsedMs": 940
+    },
+    {
+      "profile": "mobile",
+      "id": "76",
+      "page": 52,
+      "result": "PASS",
+      "elapsedMs": 938
+    },
+    {
+      "profile": "mobile",
+      "id": "77",
+      "page": 53,
+      "result": "PASS",
+      "elapsedMs": 941
+    }
+  ],
+  "uiChecks": "PASS"
+}
