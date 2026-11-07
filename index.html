@@ -42,24 +42,56 @@
           env(safe-area-inset-bottom) env(safe-area-inset-left);
       }
       .paper {
+        position: relative;
         width: 100%;
         height: 100%;
-        display: flex;
-        align-items: flex-start;
-        justify-content: flex-start;
         overflow: auto;
         overscroll-behavior: contain;
-        scrollbar-width: none;
+        overflow-anchor: none;
+        -webkit-overflow-scrolling: touch;
+        touch-action: pan-x pan-y pinch-zoom;
+        scrollbar-width: thin;
       }
-      .paper::-webkit-scrollbar {
-        display: none;
+      #pages {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        min-height: 100%;
       }
-      canvas {
-        display: block;
+      .pdf-page {
+        position: relative;
         flex-shrink: 0;
-        margin: auto;
+        background: #fff;
+        overflow: hidden;
+      }
+      .pdf-page canvas {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+      .pdf-page:not([data-rendered])::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 22px;
+        height: 22px;
+        margin: -11px;
+        border: 2px solid #ddd;
+        border-top-color: #666;
+        border-radius: 50%;
+      }
+      .pdf-page[data-loading]::after {
+        animation: spin 1s linear infinite;
       }
       #status {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 3;
         margin: auto;
         padding: 24px;
         max-width: 560px;
@@ -84,7 +116,8 @@
         }
       }
       @media (prefers-reduced-motion: reduce) {
-        #status:not(.error)::after {
+        #status:not(.error)::after,
+        .pdf-page[data-loading]::after {
           animation: none;
           border-style: dotted;
         }
@@ -208,7 +241,7 @@
     <main aria-label="เอกสาร PDF">
       <div class="paper" id="paper">
         <p id="status" role="status" aria-label="กำลังโหลดเอกสาร"></p>
-        <canvas id="canvas" hidden aria-label="หน้าเอกสาร PDF"></canvas>
+        <div id="pages" hidden></div>
       </div>
     </main>
     <div id="tool-dock">
@@ -259,289 +292,6 @@
         ⋯
       </button>
     </div>
-    <script type="module">
-      import * as pdfjsLib from "./vendor/pdfjs/pdf.min.mjs";
-      pdfjsLib.GlobalWorkerOptions.workerSrc =
-        "./vendor/pdfjs/pdf.worker.min.mjs";
-      const $ = (s) => document.querySelector(s);
-      const UI = {
-        canvas: $("#canvas"),
-        status: $("#status"),
-        page: $("#page"),
-        total: $("#total"),
-        prev: $("#prev"),
-        next: $("#next"),
-        zoom: $("#zoom"),
-      };
-      const params = new URLSearchParams(location.search);
-      const PDF_URL = "./innovation-final.pdf?v=4295e6c74e8e";
-      const MAP_URL = "./mapping.json";
-      let ready = false;
-      let doc = null,
-        current = 1,
-        factor = 1,
-        task = null,
-        renderSerial = 0,
-        mapping = null;
-      function show(message, error = false) {
-        UI.status.textContent = error ? message : "";
-        UI.status.setAttribute("aria-label", message);
-        UI.status.classList.toggle("error", error);
-        UI.status.hidden = false;
-        UI.canvas.hidden = true;
-      }
-      function controls() {
-        for (const selector of ["#page", "#minus", "#plus"])
-          $(selector).disabled = !ready;
-        UI.page.value = current;
-        UI.total.textContent = doc?.numPages ?? "…";
-        UI.page.max = doc?.numPages ?? 1;
-        UI.prev.disabled = !doc || current <= 1;
-        UI.next.disabled = !doc || current >= doc.numPages;
-        UI.zoom.textContent = Math.round(factor * 100) + "%";
-        $("#full").href = PDF_URL + "#page=" + current;
-      }
-      function setUrl(page) {
-        const u = new URL(location.href);
-        const match = Object.entries(mapping?.idToPage || {}).find(
-          ([, n]) => Number(n) === page,
-        );
-        u.searchParams.delete("page");
-        u.searchParams.delete("id");
-        if (match) u.searchParams.set("id", match[0]);
-        else u.searchParams.set("page", String(page));
-        history.replaceState(null, "", u);
-      }
-      function safeInteger(raw) {
-        if (!/^\d+$/.test(String(raw ?? ""))) return null;
-        const n = Number(raw);
-        return Number.isSafeInteger(n) && n > 0 ? n : null;
-      }
-      function resolvePage(data) {
-        if (params.has("id")) {
-          const id = safeInteger(params.get("id"));
-          if (id === null) throw new Error("รหัสผลงานไม่ถูกต้อง");
-          const p = data.idToPage[String(id)];
-          if (!p) throw new Error("ไม่พบผลงาน ID " + id + " ใน PDF ฉบับนี้");
-          return p;
-        }
-        if (params.has("page")) {
-          const p = safeInteger(params.get("page"));
-          if (!p) throw new Error("เลขหน้าไม่ถูกต้อง");
-          return p;
-        }
-        return 1;
-      }
-      async function render() {
-        if (!doc || !ready) return;
-        const serial = ++renderSerial;
-        const pageNo = current;
-        controls();
-        show("กำลังแสดงหน้า " + pageNo + "…");
-        try {
-          if (task) {
-            const previous = task;
-            previous.cancel();
-            try {
-              await previous.promise;
-            } catch (e) {}
-            if (task === previous) task = null;
-          }
-          if (serial !== renderSerial) return;
-          const page = await doc.getPage(pageNo);
-          if (serial !== renderSerial) return;
-          const base = page.getViewport({ scale: 1 });
-          const width = Math.max(1, $("#paper").clientWidth);
-          const height = Math.max(1, $("#paper").clientHeight);
-          const scale =
-            Math.min(width / base.width, height / base.height) * factor;
-          const viewport = page.getViewport({ scale });
-          const dpr = Math.min(
-            devicePixelRatio || 1,
-            2,
-            Math.sqrt(4000000 / (viewport.width * viewport.height)),
-          );
-          /* Keep a single canvas within a four-million-pixel budget on mobile. */ UI.canvas.width =
-            Math.floor(viewport.width * dpr);
-          UI.canvas.height = Math.floor(viewport.height * dpr);
-          UI.canvas.style.width = viewport.width + "px";
-          UI.canvas.style.height = viewport.height + "px";
-          const ctx = UI.canvas.getContext("2d", { alpha: false });
-          task = page.render({
-            canvasContext: ctx,
-            viewport,
-            transform: dpr === 1 ? null : [dpr, 0, 0, dpr, 0, 0],
-          });
-          await task.promise;
-          if (serial !== renderSerial) return;
-          UI.canvas.dataset.page = String(pageNo);
-          UI.canvas.setAttribute(
-            "aria-label",
-            "หน้า " + pageNo + " จาก " + doc.numPages,
-          );
-          UI.canvas.hidden = false;
-          UI.status.hidden = true;
-          task = null;
-        } catch (err) {
-          if (err?.name === "RenderingCancelledException") return;
-          console.error(err);
-          if (serial === renderSerial)
-            show("แสดงหน้าไม่สำเร็จ กรุณาลองอีกครั้ง", true);
-        }
-      }
-      function go(n, update = true) {
-        if (!doc || !ready) return;
-        const num = Math.max(
-          1,
-          Math.min(doc.numPages, Math.floor(Number(n) || 1)),
-        );
-        if (num === current && UI.status.hidden) return;
-        current = num;
-        if (update) setUrl(num);
-        showTools(false);
-        render();
-      }
-      async function start() {
-        try {
-          const [map, pdf] = await Promise.all([
-            fetch(MAP_URL, { cache: "no-cache" }).then((r) => {
-              if (!r.ok) throw Error("โหลด Mapping ไม่สำเร็จ");
-              return r.json();
-            }),
-            pdfjsLib.getDocument({
-              url: PDF_URL,
-              disableAutoFetch: true,
-              disableStream: true,
-              rangeChunkSize: 262144,
-            }).promise,
-          ]);
-          mapping = map;
-          doc = pdf;
-          if (!mapping.idToPage || mapping.pageCount !== doc.numPages)
-            throw new Error("Mapping ไม่ตรงกับจำนวนหน้า PDF");
-          const entries = Object.entries(mapping.idToPage);
-          if (
-            entries.length !== doc.numPages ||
-            new Set(entries.map(([, p]) => p)).size !== doc.numPages ||
-            entries.some(
-              ([id, p]) =>
-                !/^\d+$/.test(id) ||
-                String(Number(id)) !== id ||
-                !Number.isSafeInteger(Number(id)) ||
-                Number(id) < 1 ||
-                !Number.isInteger(p) ||
-                p < 1 ||
-                p > doc.numPages,
-            )
-          )
-            throw new Error("Mapping มี ID หรือเลขหน้าไม่ถูกต้อง");
-          const page = resolvePage(mapping);
-          if (page > doc.numPages)
-            throw new Error("ผลงานนี้ไม่มีใน PDF ฉบับปัจจุบัน");
-          current = page;
-          ready = true;
-          controls();
-          await render();
-        } catch (err) {
-          console.error(err);
-          ready = false;
-          doc = null;
-          controls();
-          show(
-            /^[ก-๙]/.test(err?.message || "")
-              ? err.message
-              : "เปิดเอกสารไม่สำเร็จ กรุณาโหลดหน้าเว็บใหม่",
-            true,
-          );
-        }
-      }
-      UI.prev.onclick = () => go(current - 1);
-      UI.next.onclick = () => go(current + 1);
-      UI.page.onchange = () => go(UI.page.value);
-      UI.page.onkeydown = (e) => {
-        if (e.key === "Enter") {
-          go(UI.page.value);
-          UI.page.blur();
-        }
-      };
-      $("#minus").onclick = () => {
-        factor = Math.max(0.5, Math.round((factor - 0.15) * 100) / 100);
-        render();
-      };
-      $("#plus").onclick = () => {
-        factor = Math.min(2.5, Math.round((factor + 0.15) * 100) / 100);
-        render();
-      };
-      addEventListener("keydown", (e) => {
-        if (e.key === "Escape") showTools(false);
-        if (e.target instanceof HTMLInputElement) return;
-        if (e.key === "ArrowLeft") go(current - 1);
-        if (e.key === "ArrowRight") go(current + 1);
-      });
-      let tx = null,
-        ty = null;
-      UI.canvas.addEventListener(
-        "touchstart",
-        (e) => {
-          tx = e.touches.length === 1 ? e.touches[0].clientX : null;
-          ty = e.touches[0].clientY;
-        },
-        { passive: true },
-      );
-      UI.canvas.addEventListener(
-        "touchend",
-        (e) => {
-          if (tx == null) return;
-          const diff = e.changedTouches[0].clientX - tx;
-          if (
-            factor === 1 &&
-            Math.abs(diff) > 60 &&
-            Math.abs(diff) > Math.abs(e.changedTouches[0].clientY - ty)
-          )
-            go(current + (diff < 0 ? 1 : -1));
-          tx = null;
-        },
-        { passive: true },
-      );
-
-      function showTools(open) {
-        $("#tools").hidden = !open;
-        $("#tool-toggle").setAttribute("aria-expanded", String(open));
-        if (!open && $("#tools").contains(document.activeElement))
-          $("#tool-toggle").focus({ preventScroll: true });
-      }
-      $("#tool-toggle").onclick = () => showTools($("#tools").hidden);
-      document.addEventListener("pointerdown", (event) => {
-        if (!$("#tool-dock").contains(event.target)) showTools(false);
-      });
-      $("#fit").onclick = () => {
-        factor = 1;
-        render();
-        showTools(false);
-      };
-      $("#full").addEventListener("click", () => showTools(false));
-      $("#fullscreen").hidden = !document.fullscreenEnabled;
-      $("#fullscreen").onclick = async () => {
-        try {
-          if (document.fullscreenElement) await document.exitFullscreen();
-          else await document.documentElement.requestFullscreen();
-          showTools(false);
-        } catch (error) {
-          console.warn("Fullscreen unavailable", error);
-        }
-      };
-      let resizeHandle;
-      function resize() {
-        clearTimeout(resizeHandle);
-        resizeHandle = setTimeout(() => {
-          if (doc) render();
-        }, 150);
-      }
-      new ResizeObserver(resize).observe($("#paper"));
-      addEventListener("resize", resize);
-      document.addEventListener("fullscreenchange", resize);
-      controls();
-      start();
-    </script>
+    <script type="module" src="./viewer.mjs?v=2ae709c8852b"></script>
   </body>
 </html>

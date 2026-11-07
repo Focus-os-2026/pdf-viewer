@@ -11,20 +11,21 @@ Source: [ผลงานนวัตกรรม ววน.pdf](https://drive.go
 - All 53 pages were scanned for decodable QR codes; results are recorded per page in `pdf-checks.json`. This is a record of the supplied document, not a replacement QR set.
 - Served PDF SHA-256: `4295e6c74e8e8a533ad475b55dca62850e9ba71208b444902fb7cef1b4c5334b`.
 
-## Full-viewport interface
+## Continuous vertical reader
 
-- No visible website heading, instructions, Copy Link or Full PDF text button.
-- One small ellipsis toggle; controls are hidden on first load and after page navigation.
-- Artwork fits entirely within the available viewport, centered without cropping or distortion. The layout uses dynamic viewport height and safe-area insets.
-- Icon controls retain accessible labels. Fit-to-screen, zoom and supported browser fullscreen are available in the popup.
-- All 53 IDs in both desktop/mobile profiles pass whole-page fit and hidden-controls checks: no cropping, no header/instructions/Copy Link and no page overflow.
-- Hidden tools, fit, fullscreen entry/exit, touch swipes, keyboard, rotation and error handling pass.
+- All 53 fixed-size portrait page containers form one native vertical scroll area with 8px gaps and no scroll snapping.
+- Direct `?id=` links position their mapped page at the top, including the last page. Manual scrolling changes the counter and stable-ID URL while preserving unrelated query parameters.
+- No visible header, instructions or Copy Link; icon tools remain hidden behind the ellipsis button.
+- Nearby pages are rendered on demand. Offscreen canvases are evicted without changing document height. Rendering is serialized and all retained canvases share an eight-million-pixel allocation budget.
+- Native touch, wheel and keyboard scrolling replace horizontal page switching. Zoom, page jumps, fit and supported browser fullscreen remain available.
 
 ## Before publication
 
-Chromium desktop (1440×900) and mobile emulation (390×844, DPR 3): **106/106 ID renders pass**, with 53/53 in each profile. Tests confirm the mapped page renders nonblank, retains the initial ID and stays within the canvas memory budget. Navigation, page jumps, zoom, first/last boundaries, legacy page links, invalid IDs, ID precedence and 320px layout pass. All requests stay on the viewer origin.
+**106/106 ID checks pass** (53 desktop, 53 mobile emulation), including wheel scrolling across page boundaries, URL updates and offscreen buffer eviction. Native vertical touch, rapid scroll reversal, fullscreen, rotation and error-path tests pass.
 
-Mobile emulation is not a physical-device or native Safari test.
+The full ID regression suite verifies all 53 routes on Chromium desktop (1440×900) and mobile emulation (390×844, DPR 3), initial scroll alignment, URL preservation, nonblank rendering, hidden tools and bounded canvas allocation. Interaction checks cover native scrolling, visible-page URL updates, far jumps, buffer eviction, constant document height, zoom, rotation, page boundaries, invalid IDs and page errors.
+
+Mobile tests use emulation, not physical iPhone/Android devices or native Safari.
 
 | ID | PDF page | Desktop | Mobile emulation |
 |---:|---:|:---:|:---:|
@@ -84,20 +85,6 @@ Mobile emulation is not a physical-device or native Safari test.
 
 ## After publication
 
-Runtime commit: `f3f2955616efcd2cdd012ebb060c14d2d2442440`.
+Production checks will be recorded after the continuous-scroll reader is deployed.
 
-- GitHub Pages [deployment](https://github.com/Focus-os-2026/pdf-viewer/actions/runs/42362797379): success.
-- Published HTML matches the tested full-viewport interface exactly.
-- The served PDF matches the verified losslessly optimized Drive PDF, and mapping matches the original unchanged mapping.
-- HTTP Range request returns `206`, `Content-Range: bytes 0-1023/14344625`, and exactly 1,024 bytes.
-- Hidden tool toggle, fit, fullscreen entry/exit, touch swipes, keyboard, rotation and error handling pass on the live URL.
-- Live desktop: **53/53 IDs pass**; live mobile emulation: **53/53 IDs pass** — **106/106 total**.
-- Every ID opens its mapped page, shows nonblank artwork fully within the viewport, preserves the initial URL and starts with tools hidden.
-- Branding, instructions and Copy Link are absent on all tested routes.
-- Navigation, zoom, page boundaries, legacy page links, invalid IDs, ID precedence, 320px layout and same-origin loading checks all pass.
-
-Live Chromium uses `TEST_IGNORE_HTTPS_ERRORS=1` for the managed environment's TLS inspection. Independent HTTPS downloads use inherited CA trust with certificate verification enabled. Application TLS settings were not changed.
-
-[HTTP verification](live-http-checks.json).
-
-[Detailed browser results](browser-results.json) · [Source PDF checks](pdf-checks.json)
+[Browser checks](browser-results.json) · [PDF source comparisons](pdf-checks.json)
