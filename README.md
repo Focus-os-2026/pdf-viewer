@@ -1,28 +1,28 @@
 # PDF Viewer — Final 53
 
-Static PDF.js viewer for **https://focus-os-2026.github.io/pdf-viewer/**.
-Existing `?id=` links are resolved using the supplied `mapping.json`; `?page=` remains supported. An ID takes precedence when both are present. Unknown IDs produce an error and never silently open a different work.
+Production: **https://focus-os-2026.github.io/pdf-viewer/**
 
-## Source and deployment
+## Current document
 
-The supplied `pdf-viewer-final-53-ready.zip` contains the template, mapping and final PDF. The PDF and mapping are preserved byte-for-byte. PDF SHA-256: `3b0bf97ed14da10e0b00d08eee80cfd9893d34055987d3c0a79b167a25d370f4` (2,260,586 bytes, 53 pages).
+Source: [ผลงานนวัตกรรม ววน.pdf](https://drive.google.com/file/d/1UticHdyn0h7Etq8Vnb6vosYxOI8tCRsC/view), supplied by the user for this update. It contains 53 portrait pages (9:16), with expanded product information.
 
-`index.html`, `mapping.json`, `innovation-final.pdf` and `vendor/pdfjs/` are served directly by GitHub Pages. PDF.js 4.10.38 and its Apache-2.0 license are included locally; the active viewer makes no Cloud Run, Drive or third-party CDN requests. `index-cloud-run.html` and the older files remain available for rollback.
+The original is 49,463,778 bytes. The served PDF is 14,344,625 bytes, reduced by lossless object deduplication, PNG prediction filters and Flate/object-stream compression. No image resampling, lossy re-encoding, content editing or QR redrawing was performed. All 53 pages render pixel-for-pixel identically to the source at the verification resolution; extracted text, document links and bookmarks are preserved.
 
-The viewer renders a single page, limits device pixel ratio to 2 and the canvas to 4 million pixels, supports horizontal scrolling when zoomed, cancels superseded renders and debounces resize. PDF loading uses range chunks where the server supports them. A fixed content revision enables caching without random cache-busting on each visit.
+- Original SHA-256: `a488545f73a4615de2c2f0127440a1163aaf2ef120281f59006a3e00af19b865`
+- Served SHA-256: `4295e6c74e8e8a533ad475b55dca62850e9ba71208b444902fb7cef1b4c5334b`
 
-## Validation
+The order of all 53 works matches the previous final. The original `mapping.json` is unchanged. Existing `?id=` QR links keep the same ID-to-work relationship; `?page=` remains supported. An ID takes precedence when both are supplied. Unknown IDs show an error and never silently open another work.
 
-- Require 53 unique IDs and a one-to-one mapping onto pages 1–53.
-- Open every ID in Chromium desktop and mobile emulation, confirm the requested page renders nonblank, preserves the initial URL and stays within the pixel budget.
-- Check navigation, page jumps, zoom, resize, legacy page links, invalid IDs and page limits.
-- Run `python -m http.server 8765` here, then run `node tests/viewer.cjs` with Playwright installed. Set `CHROMIUM_PATH` and `TEST_URL` when needed. This is mobile emulation, not a test on physical iOS/Android devices.
-- See `reports/` for detailed results.
+## Hosting and mobile behavior
 
-## Supplied PDF QR finding — accepted by the user
+`index.html`, `mapping.json`, `innovation-final.pdf` and `vendor/pdfjs/` are served directly by GitHub Pages. The active viewer does not call Cloud Run, Drive or a third-party CDN. PDF.js 4.10.38 is vendored with its Apache-2.0 license.
 
-All 53 embedded QR codes decode to the same Canva URL, `https://www.canvaqr.com/RGW79QqjiH`, which redirects to `https://focus-os-2026.github.io/pdf-viewer/?id=52`. Therefore the embedded QR destination agrees with the supplied per-page mapping only on page 30 (ID 52); the other 52 pages differ. This is a finding in the supplied PDF, not a change made by the viewer. The PDF, QR images, redirect configuration and original URLs have not been edited.
+The viewer renders one page at a time, caps device pixel ratio at 2 and canvas allocation at 4 million pixels, cancels superseded renders and debounces resize. PDF loading uses HTTP Range requests, avoiding a full-document transfer before every initial page. A fixed content revision in `PDF_URL` makes this replacement bypass the older PDF cache while retaining the public viewer URLs.
 
-The user explicitly confirmed publication of the supplied PDF unchanged, retaining all embedded QR codes. This finding is recorded separately from viewer ID-routing checks; it is not counted as a successful QR-to-content match.
+## Validation and maintenance
 
-For later final exports, verify the mapping against the actual page order, update the PDF_URL content revision in index.html, and publish the PDF, viewer and mapping in the same commit. Prior production commit: `4dc0f14c1e755d4282930b792ff773fc479e8e44`.
+See [reports/TEST_REPORT.md](reports/TEST_REPORT.md) for all 53 ID results and [reports/pdf-checks.json](reports/pdf-checks.json) for source comparisons.
+
+For local tests, serve this directory on port 8765 and run `node tests/viewer.cjs` with Playwright installed. Set `TEST_URL` and `CHROMIUM_PATH` as needed. `tests/interactions.cjs` checks copy, touch, keyboard, rapid navigation and error paths. Mobile tests use Chromium emulation, not physical iPhone/Android devices or native Safari.
+
+For later exports, verify page order, update `mapping.json` when necessary and update the `PDF_URL` content revision. Publish the PDF, mapping and viewer together. The prior production version is commit `e34baec8dc2031b2b45bb641af9202fdacf3855f`; older Cloud Run files remain for rollback.

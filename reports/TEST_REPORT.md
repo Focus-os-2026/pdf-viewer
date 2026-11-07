@@ -1,24 +1,21 @@
-# Validation report — Final 53
+# Validation report — Updated Drive PDF
 
-Date: 2026-11-07 (Asia/Bangkok).
+Source: [ผลงานนวัตกรรม ววน.pdf](https://drive.google.com/file/d/1UticHdyn0h7Etq8Vnb6vosYxOI8tCRsC/view).
+
+## PDF and stable mapping
+
+- 53 portrait pages (9:16). All 53 works remain in the original order; `mapping.json` is unchanged.
+- Original size: 49,463,778 bytes. Losslessly optimized size: 14,344,625 bytes (71.0% reduction).
+- Every source page and served page has identical rendered pixels at scale 3 (216 DPI) and identical extracted text.
+- Links and bookmarks are preserved. No images were resampled or re-encoded lossily; no QR was redrawn or redirected.
+- All 53 pages were scanned for decodable QR codes; results are recorded per page in `pdf-checks.json`. This is a record of the supplied document, not a replacement QR set.
+- Served PDF SHA-256: `4295e6c74e8e8a533ad475b55dca62850e9ba71208b444902fb7cef1b4c5334b`.
 
 ## Before publication
 
-- All four supplied ZIP files inspected: index.html, mapping.json, innovation-final.pdf, README.txt.
-- PDF: 53 pages, 2,260,586 bytes; PDF and mapping are byte-for-byte identical to the supplied originals.
-- Mapping: 53 unique IDs, bijection onto pages 1–53.
-- Chromium desktop (1440×900) and mobile emulation (390×844, DPR 3): all 53 IDs render the mapped page with nonblank canvas; 106/106 pass.
-- Navigation, page jumps, boundary buttons, legacy `?page=`, ID precedence, unrelated query preservation, zoom and 320px layout pass.
-- Invalid IDs and invalid/out-of-range page numbers show an error and do not render a fallback work.
-- Copy link, synthetic touch swipe, keyboard arrows, rapid navigation, rotation, corrupt mapping and missing-PDF errors pass.
-- All browser requests are to the viewer origin. One canvas, capped at 4 million pixels.
-- Mobile emulation is not a physical iPhone/Android or native Safari test.
+Chromium desktop (1440×900) and mobile emulation (390×844, DPR 3): **106/106 ID renders pass**, with 53/53 in each profile. Tests confirm the mapped page renders nonblank, retains the initial ID and stays within the canvas memory budget. Navigation, page jumps, zoom, first/last boundaries, legacy page links, invalid IDs, ID precedence and 320px layout pass. All requests stay on the viewer origin.
 
-## Embedded QR finding
-
-All 53 PDF QR images decode to `https://www.canvaqr.com/RGW79QqjiH`, redirecting to `https://focus-os-2026.github.io/pdf-viewer/?id=52`. This agrees with the supplied mapping only on page 30. The user explicitly confirmed publication of the supplied PDF unchanged and retention of all QR codes. This finding is not counted as a QR matching pass. No QR image, original URL or Canva redirect was changed.
-
-## All 53 ID routing results
+Mobile emulation is not a physical-device or native Safari test.
 
 | ID | PDF page | Desktop | Mobile emulation |
 |---:|---:|:---:|:---:|
@@ -76,22 +73,8 @@ All 53 PDF QR images decode to `https://www.canvaqr.com/RGW79QqjiH`, redirecting
 | 76 | 52 | PASS | PASS |
 | 77 | 53 | PASS | PASS |
 
-Detailed data: [browser-results.json](browser-results.json), [pdf-checks.json](pdf-checks.json).
+## After publication
 
-## Live-site verification
+Production verification will be appended after the new PDF is deployed.
 
-Published runtime commit: `78c1620c9b213a6fa1d434440fc2baf4cf4c3b28`.
-
-- GitHub Pages [deployment run](https://github.com/Focus-os-2026/pdf-viewer/actions/runs/42360340485): success.
-- Root HTML matches the tested version exactly. The deployed PDF and mapping match the supplied originals byte-for-byte.
-- PDF range request: HTTP 206; `Content-Range: bytes 0-1023/2260586`; 1,024 bytes returned.
-- Browser interaction and error-path suite passes on the published URL.
-- Live Chromium desktop: 53/53 mapped IDs render correctly.
-- Live Chromium mobile emulation: 53/53 mapped IDs render correctly.
-- Live total: 106/106 ID render checks pass, plus navigation, zoom, copy, synthetic touch swipe, keyboard, rapid navigation, rotation and error-path checks.
-- No Cloud Run, Drive or external CDN requests were made by the active viewer.
-
-The managed Chromium tests use `TEST_IGNORE_HTTPS_ERRORS=1` to accommodate the environment's TLS inspection. Independent HTTPS downloads use curl/Python with the inherited CA trust and TLS verification enabled. Application TLS settings were not changed.
-
-Detailed HTTP evidence: [live-http-checks.json](live-http-checks.json).
-
+[Detailed browser results](browser-results.json) · [Source PDF checks](pdf-checks.json)

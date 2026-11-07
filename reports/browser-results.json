@@ -1,747 +1,747 @@
 {
-  "base": "https://focus-os-2026.github.io/pdf-viewer/",
+  "base": "http://127.0.0.1:8766/",
   "results": [
     {
       "profile": "desktop",
       "id": "1",
       "page": 1,
       "result": "PASS",
-      "elapsedMs": 7007
+      "elapsedMs": 3041
     },
     {
       "profile": "desktop",
       "id": "2",
       "page": 2,
       "result": "PASS",
-      "elapsedMs": 6278
+      "elapsedMs": 2152
     },
     {
       "profile": "desktop",
       "id": "3",
       "page": 3,
       "result": "PASS",
-      "elapsedMs": 1567
+      "elapsedMs": 2246
     },
     {
       "profile": "desktop",
       "id": "4",
       "page": 4,
       "result": "PASS",
-      "elapsedMs": 1552
+      "elapsedMs": 1512
     },
     {
       "profile": "desktop",
       "id": "5",
       "page": 5,
       "result": "PASS",
-      "elapsedMs": 1068
+      "elapsedMs": 1547
     },
     {
       "profile": "desktop",
       "id": "6",
       "page": 6,
       "result": "PASS",
-      "elapsedMs": 999
+      "elapsedMs": 1481
     },
     {
       "profile": "desktop",
       "id": "7",
       "page": 7,
       "result": "PASS",
-      "elapsedMs": 1531
+      "elapsedMs": 2064
     },
     {
       "profile": "desktop",
       "id": "8",
       "page": 8,
+      "result": "PASS",
+      "elapsedMs": 1607
+    },
+    {
+      "profile": "desktop",
+      "id": "12",
+      "page": 9,
+      "result": "PASS",
+      "elapsedMs": 2090
+    },
+    {
+      "profile": "desktop",
+      "id": "13",
+      "page": 10,
+      "result": "PASS",
+      "elapsedMs": 1532
+    },
+    {
+      "profile": "desktop",
+      "id": "14",
+      "page": 11,
+      "result": "PASS",
+      "elapsedMs": 1474
+    },
+    {
+      "profile": "desktop",
+      "id": "15",
+      "page": 12,
+      "result": "PASS",
+      "elapsedMs": 1430
+    },
+    {
+      "profile": "desktop",
+      "id": "16",
+      "page": 13,
+      "result": "PASS",
+      "elapsedMs": 1470
+    },
+    {
+      "profile": "desktop",
+      "id": "17",
+      "page": 14,
+      "result": "PASS",
+      "elapsedMs": 1439
+    },
+    {
+      "profile": "desktop",
+      "id": "18",
+      "page": 15,
+      "result": "PASS",
+      "elapsedMs": 1451
+    },
+    {
+      "profile": "desktop",
+      "id": "19",
+      "page": 16,
+      "result": "PASS",
+      "elapsedMs": 2019
+    },
+    {
+      "profile": "desktop",
+      "id": "20",
+      "page": 17,
+      "result": "PASS",
+      "elapsedMs": 1542
+    },
+    {
+      "profile": "desktop",
+      "id": "21",
+      "page": 18,
+      "result": "PASS",
+      "elapsedMs": 1433
+    },
+    {
+      "profile": "desktop",
+      "id": "22",
+      "page": 19,
+      "result": "PASS",
+      "elapsedMs": 1446
+    },
+    {
+      "profile": "desktop",
+      "id": "23",
+      "page": 20,
       "result": "PASS",
       "elapsedMs": 1487
     },
     {
       "profile": "desktop",
-      "id": "12",
-      "page": 9,
-      "result": "PASS",
-      "elapsedMs": 1466
-    },
-    {
-      "profile": "desktop",
-      "id": "13",
-      "page": 10,
-      "result": "PASS",
-      "elapsedMs": 1506
-    },
-    {
-      "profile": "desktop",
-      "id": "14",
-      "page": 11,
-      "result": "PASS",
-      "elapsedMs": 1504
-    },
-    {
-      "profile": "desktop",
-      "id": "15",
-      "page": 12,
-      "result": "PASS",
-      "elapsedMs": 1453
-    },
-    {
-      "profile": "desktop",
-      "id": "16",
-      "page": 13,
-      "result": "PASS",
-      "elapsedMs": 1477
-    },
-    {
-      "profile": "desktop",
-      "id": "17",
-      "page": 14,
-      "result": "PASS",
-      "elapsedMs": 996
-    },
-    {
-      "profile": "desktop",
-      "id": "18",
-      "page": 15,
-      "result": "PASS",
-      "elapsedMs": 1479
-    },
-    {
-      "profile": "desktop",
-      "id": "19",
-      "page": 16,
-      "result": "PASS",
-      "elapsedMs": 1553
-    },
-    {
-      "profile": "desktop",
-      "id": "20",
-      "page": 17,
-      "result": "PASS",
-      "elapsedMs": 1442
-    },
-    {
-      "profile": "desktop",
-      "id": "21",
-      "page": 18,
-      "result": "PASS",
-      "elapsedMs": 1454
-    },
-    {
-      "profile": "desktop",
-      "id": "22",
-      "page": 19,
-      "result": "PASS",
-      "elapsedMs": 1466
-    },
-    {
-      "profile": "desktop",
-      "id": "23",
-      "page": 20,
-      "result": "PASS",
-      "elapsedMs": 935
-    },
-    {
-      "profile": "desktop",
       "id": "25",
       "page": 21,
       "result": "PASS",
-      "elapsedMs": 1508
+      "elapsedMs": 1416
     },
     {
       "profile": "desktop",
       "id": "26",
       "page": 22,
       "result": "PASS",
-      "elapsedMs": 1594
+      "elapsedMs": 2034
     },
     {
       "profile": "desktop",
       "id": "27",
       "page": 23,
       "result": "PASS",
-      "elapsedMs": 1541
+      "elapsedMs": 1429
     },
     {
       "profile": "desktop",
       "id": "30",
       "page": 24,
       "result": "PASS",
-      "elapsedMs": 1482
+      "elapsedMs": 1450
     },
     {
       "profile": "desktop",
       "id": "33",
       "page": 25,
       "result": "PASS",
-      "elapsedMs": 1440
+      "elapsedMs": 1438
     },
     {
       "profile": "desktop",
       "id": "42",
       "page": 26,
       "result": "PASS",
-      "elapsedMs": 1468
+      "elapsedMs": 1469
     },
     {
       "profile": "desktop",
       "id": "45",
       "page": 27,
       "result": "PASS",
-      "elapsedMs": 970
+      "elapsedMs": 1982
     },
     {
       "profile": "desktop",
       "id": "49",
       "page": 28,
       "result": "PASS",
-      "elapsedMs": 1524
+      "elapsedMs": 1518
     },
     {
       "profile": "desktop",
       "id": "51",
       "page": 29,
       "result": "PASS",
-      "elapsedMs": 1488
+      "elapsedMs": 1447
     },
     {
       "profile": "desktop",
       "id": "52",
       "page": 30,
       "result": "PASS",
-      "elapsedMs": 1523
+      "elapsedMs": 1491
     },
     {
       "profile": "desktop",
       "id": "53",
       "page": 31,
       "result": "PASS",
-      "elapsedMs": 1481
+      "elapsedMs": 1455
     },
     {
       "profile": "desktop",
       "id": "54",
       "page": 32,
-      "result": "PASS",
-      "elapsedMs": 1458
-    },
-    {
-      "profile": "desktop",
-      "id": "55",
-      "page": 33,
-      "result": "PASS",
-      "elapsedMs": 1493
-    },
-    {
-      "profile": "desktop",
-      "id": "56",
-      "page": 34,
-      "result": "PASS",
-      "elapsedMs": 981
-    },
-    {
-      "profile": "desktop",
-      "id": "57",
-      "page": 35,
-      "result": "PASS",
-      "elapsedMs": 1491
-    },
-    {
-      "profile": "desktop",
-      "id": "58",
-      "page": 36,
-      "result": "PASS",
-      "elapsedMs": 983
-    },
-    {
-      "profile": "desktop",
-      "id": "59",
-      "page": 37,
-      "result": "PASS",
-      "elapsedMs": 1474
-    },
-    {
-      "profile": "desktop",
-      "id": "60",
-      "page": 38,
       "result": "PASS",
       "elapsedMs": 1462
     },
     {
       "profile": "desktop",
-      "id": "61",
-      "page": 39,
+      "id": "55",
+      "page": 33,
       "result": "PASS",
       "elapsedMs": 1468
     },
     {
       "profile": "desktop",
-      "id": "62",
-      "page": 40,
+      "id": "56",
+      "page": 34,
       "result": "PASS",
-      "elapsedMs": 1473
+      "elapsedMs": 1978
     },
     {
       "profile": "desktop",
-      "id": "64",
-      "page": 41,
+      "id": "57",
+      "page": 35,
       "result": "PASS",
-      "elapsedMs": 978
+      "elapsedMs": 1533
     },
     {
       "profile": "desktop",
-      "id": "65",
-      "page": 42,
-      "result": "PASS",
-      "elapsedMs": 1502
-    },
-    {
-      "profile": "desktop",
-      "id": "66",
-      "page": 43,
-      "result": "PASS",
-      "elapsedMs": 1452
-    },
-    {
-      "profile": "desktop",
-      "id": "68",
-      "page": 44,
-      "result": "PASS",
-      "elapsedMs": 1484
-    },
-    {
-      "profile": "desktop",
-      "id": "69",
-      "page": 45,
-      "result": "PASS",
-      "elapsedMs": 1493
-    },
-    {
-      "profile": "desktop",
-      "id": "70",
-      "page": 46,
-      "result": "PASS",
-      "elapsedMs": 1478
-    },
-    {
-      "profile": "desktop",
-      "id": "71",
-      "page": 47,
-      "result": "PASS",
-      "elapsedMs": 1459
-    },
-    {
-      "profile": "desktop",
-      "id": "72",
-      "page": 48,
-      "result": "PASS",
-      "elapsedMs": 942
-    },
-    {
-      "profile": "desktop",
-      "id": "73",
-      "page": 49,
-      "result": "PASS",
-      "elapsedMs": 979
-    },
-    {
-      "profile": "desktop",
-      "id": "74",
-      "page": 50,
-      "result": "PASS",
-      "elapsedMs": 1476
-    },
-    {
-      "profile": "desktop",
-      "id": "75",
-      "page": 51,
-      "result": "PASS",
-      "elapsedMs": 1505
-    },
-    {
-      "profile": "desktop",
-      "id": "76",
-      "page": 52,
-      "result": "PASS",
-      "elapsedMs": 1473
-    },
-    {
-      "profile": "desktop",
-      "id": "77",
-      "page": 53,
-      "result": "PASS",
-      "elapsedMs": 1584
-    },
-    {
-      "profile": "mobile",
-      "id": "1",
-      "page": 1,
-      "result": "PASS",
-      "elapsedMs": 1961
-    },
-    {
-      "profile": "mobile",
-      "id": "2",
-      "page": 2,
+      "id": "58",
+      "page": 36,
       "result": "PASS",
       "elapsedMs": 1479
     },
     {
-      "profile": "mobile",
-      "id": "3",
-      "page": 3,
-      "result": "PASS",
-      "elapsedMs": 1483
-    },
-    {
-      "profile": "mobile",
-      "id": "4",
-      "page": 4,
-      "result": "PASS",
-      "elapsedMs": 1002
-    },
-    {
-      "profile": "mobile",
-      "id": "5",
-      "page": 5,
-      "result": "PASS",
-      "elapsedMs": 1492
-    },
-    {
-      "profile": "mobile",
-      "id": "6",
-      "page": 6,
-      "result": "PASS",
-      "elapsedMs": 969
-    },
-    {
-      "profile": "mobile",
-      "id": "7",
-      "page": 7,
-      "result": "PASS",
-      "elapsedMs": 1530
-    },
-    {
-      "profile": "mobile",
-      "id": "8",
-      "page": 8,
-      "result": "PASS",
-      "elapsedMs": 1467
-    },
-    {
-      "profile": "mobile",
-      "id": "12",
-      "page": 9,
-      "result": "PASS",
-      "elapsedMs": 1455
-    },
-    {
-      "profile": "mobile",
-      "id": "13",
-      "page": 10,
-      "result": "PASS",
-      "elapsedMs": 1469
-    },
-    {
-      "profile": "mobile",
-      "id": "14",
-      "page": 11,
-      "result": "PASS",
-      "elapsedMs": 1478
-    },
-    {
-      "profile": "mobile",
-      "id": "15",
-      "page": 12,
-      "result": "PASS",
-      "elapsedMs": 1491
-    },
-    {
-      "profile": "mobile",
-      "id": "16",
-      "page": 13,
-      "result": "PASS",
-      "elapsedMs": 1493
-    },
-    {
-      "profile": "mobile",
-      "id": "17",
-      "page": 14,
-      "result": "PASS",
-      "elapsedMs": 1453
-    },
-    {
-      "profile": "mobile",
-      "id": "18",
-      "page": 15,
-      "result": "PASS",
-      "elapsedMs": 1463
-    },
-    {
-      "profile": "mobile",
-      "id": "19",
-      "page": 16,
-      "result": "PASS",
-      "elapsedMs": 1481
-    },
-    {
-      "profile": "mobile",
-      "id": "20",
-      "page": 17,
-      "result": "PASS",
-      "elapsedMs": 946
-    },
-    {
-      "profile": "mobile",
-      "id": "21",
-      "page": 18,
-      "result": "PASS",
-      "elapsedMs": 1460
-    },
-    {
-      "profile": "mobile",
-      "id": "22",
-      "page": 19,
-      "result": "PASS",
-      "elapsedMs": 1505
-    },
-    {
-      "profile": "mobile",
-      "id": "23",
-      "page": 20,
-      "result": "PASS",
-      "elapsedMs": 1104
-    },
-    {
-      "profile": "mobile",
-      "id": "25",
-      "page": 21,
-      "result": "PASS",
-      "elapsedMs": 1475
-    },
-    {
-      "profile": "mobile",
-      "id": "26",
-      "page": 22,
-      "result": "PASS",
-      "elapsedMs": 948
-    },
-    {
-      "profile": "mobile",
-      "id": "27",
-      "page": 23,
-      "result": "PASS",
-      "elapsedMs": 1478
-    },
-    {
-      "profile": "mobile",
-      "id": "30",
-      "page": 24,
-      "result": "PASS",
-      "elapsedMs": 1474
-    },
-    {
-      "profile": "mobile",
-      "id": "33",
-      "page": 25,
-      "result": "PASS",
-      "elapsedMs": 1509
-    },
-    {
-      "profile": "mobile",
-      "id": "42",
-      "page": 26,
-      "result": "PASS",
-      "elapsedMs": 979
-    },
-    {
-      "profile": "mobile",
-      "id": "45",
-      "page": 27,
-      "result": "PASS",
-      "elapsedMs": 1483
-    },
-    {
-      "profile": "mobile",
-      "id": "49",
-      "page": 28,
-      "result": "PASS",
-      "elapsedMs": 1469
-    },
-    {
-      "profile": "mobile",
-      "id": "51",
-      "page": 29,
-      "result": "PASS",
-      "elapsedMs": 986
-    },
-    {
-      "profile": "mobile",
-      "id": "52",
-      "page": 30,
-      "result": "PASS",
-      "elapsedMs": 1525
-    },
-    {
-      "profile": "mobile",
-      "id": "53",
-      "page": 31,
-      "result": "PASS",
-      "elapsedMs": 1464
-    },
-    {
-      "profile": "mobile",
-      "id": "54",
-      "page": 32,
-      "result": "PASS",
-      "elapsedMs": 1020
-    },
-    {
-      "profile": "mobile",
-      "id": "55",
-      "page": 33,
-      "result": "PASS",
-      "elapsedMs": 1478
-    },
-    {
-      "profile": "mobile",
-      "id": "56",
-      "page": 34,
-      "result": "PASS",
-      "elapsedMs": 975
-    },
-    {
-      "profile": "mobile",
-      "id": "57",
-      "page": 35,
-      "result": "PASS",
-      "elapsedMs": 991
-    },
-    {
-      "profile": "mobile",
-      "id": "58",
-      "page": 36,
-      "result": "PASS",
-      "elapsedMs": 990
-    },
-    {
-      "profile": "mobile",
+      "profile": "desktop",
       "id": "59",
       "page": 37,
       "result": "PASS",
       "elapsedMs": 1450
     },
     {
+      "profile": "desktop",
+      "id": "60",
+      "page": 38,
+      "result": "PASS",
+      "elapsedMs": 2028
+    },
+    {
+      "profile": "desktop",
+      "id": "61",
+      "page": 39,
+      "result": "PASS",
+      "elapsedMs": 1462
+    },
+    {
+      "profile": "desktop",
+      "id": "62",
+      "page": 40,
+      "result": "PASS",
+      "elapsedMs": 1432
+    },
+    {
+      "profile": "desktop",
+      "id": "64",
+      "page": 41,
+      "result": "PASS",
+      "elapsedMs": 1472
+    },
+    {
+      "profile": "desktop",
+      "id": "65",
+      "page": 42,
+      "result": "PASS",
+      "elapsedMs": 1486
+    },
+    {
+      "profile": "desktop",
+      "id": "66",
+      "page": 43,
+      "result": "PASS",
+      "elapsedMs": 1474
+    },
+    {
+      "profile": "desktop",
+      "id": "68",
+      "page": 44,
+      "result": "PASS",
+      "elapsedMs": 1457
+    },
+    {
+      "profile": "desktop",
+      "id": "69",
+      "page": 45,
+      "result": "PASS",
+      "elapsedMs": 1469
+    },
+    {
+      "profile": "desktop",
+      "id": "70",
+      "page": 46,
+      "result": "PASS",
+      "elapsedMs": 1584
+    },
+    {
+      "profile": "desktop",
+      "id": "71",
+      "page": 47,
+      "result": "PASS",
+      "elapsedMs": 1457
+    },
+    {
+      "profile": "desktop",
+      "id": "72",
+      "page": 48,
+      "result": "PASS",
+      "elapsedMs": 1443
+    },
+    {
+      "profile": "desktop",
+      "id": "73",
+      "page": 49,
+      "result": "PASS",
+      "elapsedMs": 1542
+    },
+    {
+      "profile": "desktop",
+      "id": "74",
+      "page": 50,
+      "result": "PASS",
+      "elapsedMs": 1464
+    },
+    {
+      "profile": "desktop",
+      "id": "75",
+      "page": 51,
+      "result": "PASS",
+      "elapsedMs": 1596
+    },
+    {
+      "profile": "desktop",
+      "id": "76",
+      "page": 52,
+      "result": "PASS",
+      "elapsedMs": 1494
+    },
+    {
+      "profile": "desktop",
+      "id": "77",
+      "page": 53,
+      "result": "PASS",
+      "elapsedMs": 2038
+    },
+    {
+      "profile": "mobile",
+      "id": "1",
+      "page": 1,
+      "result": "PASS",
+      "elapsedMs": 1829
+    },
+    {
+      "profile": "mobile",
+      "id": "2",
+      "page": 2,
+      "result": "PASS",
+      "elapsedMs": 1588
+    },
+    {
+      "profile": "mobile",
+      "id": "3",
+      "page": 3,
+      "result": "PASS",
+      "elapsedMs": 983
+    },
+    {
+      "profile": "mobile",
+      "id": "4",
+      "page": 4,
+      "result": "PASS",
+      "elapsedMs": 917
+    },
+    {
+      "profile": "mobile",
+      "id": "5",
+      "page": 5,
+      "result": "PASS",
+      "elapsedMs": 1532
+    },
+    {
+      "profile": "mobile",
+      "id": "6",
+      "page": 6,
+      "result": "PASS",
+      "elapsedMs": 1415
+    },
+    {
+      "profile": "mobile",
+      "id": "7",
+      "page": 7,
+      "result": "PASS",
+      "elapsedMs": 1520
+    },
+    {
+      "profile": "mobile",
+      "id": "8",
+      "page": 8,
+      "result": "PASS",
+      "elapsedMs": 1443
+    },
+    {
+      "profile": "mobile",
+      "id": "12",
+      "page": 9,
+      "result": "PASS",
+      "elapsedMs": 1413
+    },
+    {
+      "profile": "mobile",
+      "id": "13",
+      "page": 10,
+      "result": "PASS",
+      "elapsedMs": 1467
+    },
+    {
+      "profile": "mobile",
+      "id": "14",
+      "page": 11,
+      "result": "PASS",
+      "elapsedMs": 1450
+    },
+    {
+      "profile": "mobile",
+      "id": "15",
+      "page": 12,
+      "result": "PASS",
+      "elapsedMs": 1517
+    },
+    {
+      "profile": "mobile",
+      "id": "16",
+      "page": 13,
+      "result": "PASS",
+      "elapsedMs": 1451
+    },
+    {
+      "profile": "mobile",
+      "id": "17",
+      "page": 14,
+      "result": "PASS",
+      "elapsedMs": 1527
+    },
+    {
+      "profile": "mobile",
+      "id": "18",
+      "page": 15,
+      "result": "PASS",
+      "elapsedMs": 1479
+    },
+    {
+      "profile": "mobile",
+      "id": "19",
+      "page": 16,
+      "result": "PASS",
+      "elapsedMs": 1428
+    },
+    {
+      "profile": "mobile",
+      "id": "20",
+      "page": 17,
+      "result": "PASS",
+      "elapsedMs": 1995
+    },
+    {
+      "profile": "mobile",
+      "id": "21",
+      "page": 18,
+      "result": "PASS",
+      "elapsedMs": 1459
+    },
+    {
+      "profile": "mobile",
+      "id": "22",
+      "page": 19,
+      "result": "PASS",
+      "elapsedMs": 1426
+    },
+    {
+      "profile": "mobile",
+      "id": "23",
+      "page": 20,
+      "result": "PASS",
+      "elapsedMs": 2010
+    },
+    {
+      "profile": "mobile",
+      "id": "25",
+      "page": 21,
+      "result": "PASS",
+      "elapsedMs": 1421
+    },
+    {
+      "profile": "mobile",
+      "id": "26",
+      "page": 22,
+      "result": "PASS",
+      "elapsedMs": 1440
+    },
+    {
+      "profile": "mobile",
+      "id": "27",
+      "page": 23,
+      "result": "PASS",
+      "elapsedMs": 1449
+    },
+    {
+      "profile": "mobile",
+      "id": "30",
+      "page": 24,
+      "result": "PASS",
+      "elapsedMs": 2010
+    },
+    {
+      "profile": "mobile",
+      "id": "33",
+      "page": 25,
+      "result": "PASS",
+      "elapsedMs": 1965
+    },
+    {
+      "profile": "mobile",
+      "id": "42",
+      "page": 26,
+      "result": "PASS",
+      "elapsedMs": 1458
+    },
+    {
+      "profile": "mobile",
+      "id": "45",
+      "page": 27,
+      "result": "PASS",
+      "elapsedMs": 1442
+    },
+    {
+      "profile": "mobile",
+      "id": "49",
+      "page": 28,
+      "result": "PASS",
+      "elapsedMs": 1539
+    },
+    {
+      "profile": "mobile",
+      "id": "51",
+      "page": 29,
+      "result": "PASS",
+      "elapsedMs": 1603
+    },
+    {
+      "profile": "mobile",
+      "id": "52",
+      "page": 30,
+      "result": "PASS",
+      "elapsedMs": 1528
+    },
+    {
+      "profile": "mobile",
+      "id": "53",
+      "page": 31,
+      "result": "PASS",
+      "elapsedMs": 1482
+    },
+    {
+      "profile": "mobile",
+      "id": "54",
+      "page": 32,
+      "result": "PASS",
+      "elapsedMs": 1498
+    },
+    {
+      "profile": "mobile",
+      "id": "55",
+      "page": 33,
+      "result": "PASS",
+      "elapsedMs": 936
+    },
+    {
+      "profile": "mobile",
+      "id": "56",
+      "page": 34,
+      "result": "PASS",
+      "elapsedMs": 1508
+    },
+    {
+      "profile": "mobile",
+      "id": "57",
+      "page": 35,
+      "result": "PASS",
+      "elapsedMs": 2082
+    },
+    {
+      "profile": "mobile",
+      "id": "58",
+      "page": 36,
+      "result": "PASS",
+      "elapsedMs": 1454
+    },
+    {
+      "profile": "mobile",
+      "id": "59",
+      "page": 37,
+      "result": "PASS",
+      "elapsedMs": 1467
+    },
+    {
       "profile": "mobile",
       "id": "60",
       "page": 38,
       "result": "PASS",
-      "elapsedMs": 1466
+      "elapsedMs": 1480
     },
     {
       "profile": "mobile",
       "id": "61",
       "page": 39,
       "result": "PASS",
-      "elapsedMs": 1570
+      "elapsedMs": 1545
     },
     {
       "profile": "mobile",
       "id": "62",
       "page": 40,
       "result": "PASS",
-      "elapsedMs": 969
+      "elapsedMs": 1478
     },
     {
       "profile": "mobile",
       "id": "64",
       "page": 41,
       "result": "PASS",
-      "elapsedMs": 969
+      "elapsedMs": 1454
     },
     {
       "profile": "mobile",
       "id": "65",
       "page": 42,
       "result": "PASS",
-      "elapsedMs": 1540
+      "elapsedMs": 1485
     },
     {
       "profile": "mobile",
       "id": "66",
       "page": 43,
       "result": "PASS",
-      "elapsedMs": 1468
+      "elapsedMs": 1464
     },
     {
       "profile": "mobile",
       "id": "68",
       "page": 44,
       "result": "PASS",
-      "elapsedMs": 1481
+      "elapsedMs": 1442
     },
     {
       "profile": "mobile",
       "id": "69",
       "page": 45,
       "result": "PASS",
-      "elapsedMs": 955
+      "elapsedMs": 1443
     },
     {
       "profile": "mobile",
       "id": "70",
       "page": 46,
       "result": "PASS",
-      "elapsedMs": 1490
+      "elapsedMs": 1465
     },
     {
       "profile": "mobile",
       "id": "71",
       "page": 47,
       "result": "PASS",
-      "elapsedMs": 1489
+      "elapsedMs": 1446
     },
     {
       "profile": "mobile",
       "id": "72",
       "page": 48,
       "result": "PASS",
-      "elapsedMs": 950
+      "elapsedMs": 1484
     },
     {
       "profile": "mobile",
       "id": "73",
       "page": 49,
       "result": "PASS",
-      "elapsedMs": 1536
+      "elapsedMs": 1430
     },
     {
       "profile": "mobile",
       "id": "74",
       "page": 50,
       "result": "PASS",
-      "elapsedMs": 1541
+      "elapsedMs": 1463
     },
     {
       "profile": "mobile",
       "id": "75",
       "page": 51,
       "result": "PASS",
-      "elapsedMs": 1462
+      "elapsedMs": 1482
     },
     {
       "profile": "mobile",
       "id": "76",
       "page": 52,
       "result": "PASS",
-      "elapsedMs": 1488
+      "elapsedMs": 1436
     },
     {
       "profile": "mobile",
       "id": "77",
       "page": 53,
       "result": "PASS",
-      "elapsedMs": 1495
+      "elapsedMs": 1503
     }
   ],
   "uiChecks": "PASS"
