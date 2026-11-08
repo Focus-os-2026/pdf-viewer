@@ -1,34 +1,36 @@
-# PDF Viewer — Final 53
+# Thailand Innovation Showcase
 
 Production: **https://focus-os-2026.github.io/pdf-viewer/**
 
-## Current document
+## Current final: 56 pages sorted by category
 
-Source: [ผลงานนวัตกรรม ววน.pdf](https://drive.google.com/file/d/1UticHdyn0h7Etq8Vnb6vosYxOI8tCRsC/view), supplied by the user for this update. It contains 53 portrait pages (9:16), with expanded product information.
+Source: [ผลงานนวัตกรรม ววน.pdf](https://drive.google.com/file/d/1RQ41C80w-62om_GpyjUd1PksJesIP02y/view), supplied on 2026-11-08. This is byte-identical to the latest version in the previously supplied Drive folder.
 
-The original is 49,463,778 bytes. The served PDF is 14,344,625 bytes, reduced by lossless object deduplication, PNG prediction filters and Flate/object-stream compression. No image resampling, lossy re-encoding, content editing or QR redrawing was performed. All 53 pages render pixel-for-pixel identically to the source at the verification resolution; extracted text, document links and bookmarks are preserved.
+The final contains 53 existing works and three category divider pages: page 1 (Preventive Health), page 18 (Medical Innovation) and page 27 (Wellness & Longevity). Canva metadata also confirms 56 pages. The supplied PDF remains the publication source; Canva has not been edited by this update.
 
-- Original SHA-256: `a488545f73a4615de2c2f0127440a1163aaf2ef120281f59006a3e00af19b865`
-- Served SHA-256: `4295e6c74e8e8a533ad475b55dca62850e9ba71208b444902fb7cef1b4c5334b`
+## Stable QR identities
 
-The order of all 53 works matches the previous final. The original `mapping.json` is unchanged. Existing `?id=` QR links keep the same ID-to-work relationship; `?page=` remains supported. An ID takes precedence when both are supplied. Unknown IDs show an error and never silently open another work.
+The user explicitly chose to retain the existing IDs and have QR codes follow their works. **An ID is not a PDF page number.** All 53 original IDs are preserved. `mapping.json` moves each to the new page. For example, `?id=1` opens Young Rice Jelly on page 28; `?id=12` opens the ginger beverage on page 32; `?id=77` opens KORA on page 56.
 
-## Hosting and mobile behavior
+All 53 QR codes embedded in the new PDF were decoded and checked against this mapping. Every QR points to the same original ID for that work. No QR was redrawn, regenerated or redirected. [ID crosswalk](reports/id-crosswalk.json).
 
-`index.html`, `mapping.json`, `innovation-final.pdf` and `vendor/pdfjs/` are served directly by GitHub Pages. The active viewer does not call Cloud Run, Drive or a third-party CDN. PDF.js 4.10.38 is vendored with its Apache-2.0 license.
+`sectionPages` explicitly declares the three divider pages without legacy IDs. They can be reached by scrolling or `?page=1`, `?page=18`, `?page=27`. The reader verifies that ID targets and section pages are disjoint and cover the PDF exactly. Unknown IDs show an error. If both parameters are supplied, `?id=` takes precedence.
 
-The 53 portrait pages are stacked vertically for native continuous scrolling, with narrow page gaps and no scroll snapping. Each page retains its 9:16 proportions. Existing QR IDs open directly at the top of their mapped page; scrolling updates the page counter and stable-ID URL. Native vertical touch, wheel and keyboard scrolling replace horizontal swipe-to-change-page.
+## File quality and hosting
 
-Branding, instructions and Copy Link remain removed. Controls stay behind a small ellipsis button, with page jumps, zoom, fit and fullscreen where supported.
+The source is 132,574,187 bytes; the served PDF is 27,192,217 bytes (79.5% smaller). Optimization uses lossless object deduplication, PNG prediction and Flate/object-stream compression. No image resampling or lossy re-encoding was performed. All 56 pages have pixel-identical renders at the validation resolution and identical extracted text, links and bookmarks.
 
-Only pages in or near the viewport have canvases. Fixed-size page placeholders prevent jumps while canvases are created or discarded. Visible pages take priority over prefetching, only one render runs at a time, obsolete tasks are cancelled and distant canvas buffers/page resources are released. The layout assigns pixel quotas with a combined eight-million-pixel canvas budget and device pixel ratio capped at 2.
+- Source SHA-256: `e094e886cf987ad4bbe28727e37b8430f767f9660b726ffdc056a4eed1f5c6b1`
+- Served SHA-256: `570141e033420ace3909f863d4dfe6d5cebf1c840e684fffa92fc0627aaed16e`
 
-PDF loading uses HTTP Range requests. The PDF and original mapping are unchanged by the scrolling update. `viewer.mjs` has a content revision in its script URL for cache-safe updates.
+PDF, mapping, PDF.js and the reader are hosted directly on GitHub Pages. Reading does not call Drive, Cloud Run or an external CDN. **Replacing a file version in Drive does not automatically update this static website.** A publication must update the PDF, mapping and cache revision together after validation. Never replace the PDF alone when page order changes.
 
-## Validation and maintenance
+## Reader and validation
 
-See [reports/TEST_REPORT.md](reports/TEST_REPORT.md) for all 53 ID results and [reports/pdf-checks.json](reports/pdf-checks.json) for source comparisons.
+Continuous vertical scrolling, 9:16 proportions, hidden icon tools and the Thailand Innovation Showcase tab title are retained. Nearby pages are painted on demand; distant canvases are released. Render tasks are serialized and retained canvases share an eight-million-pixel budget. HTTP Range loading and a fixed PDF revision support mobile opening.
 
-For local tests, serve this directory on port 8765 and run `node tests/viewer.cjs` with Playwright installed. Set `TEST_URL` and `CHROMIUM_PATH` as needed. `tests/interactions.cjs` checks native vertical touch, absence of horizontal page switching, hidden tools, fit, fullscreen, keyboard, rapid scroll reversals and error paths. Mobile tests use Chromium emulation, not physical iPhone/Android devices or native Safari.
+See [validation results](reports/TEST_REPORT.md), [PDF comparisons](reports/pdf-checks.json) and [all ID mappings](reports/id-crosswalk.json). Tests cover all 53 legacy IDs plus all three divider pages on desktop and Chromium mobile emulation. Mobile emulation is not a physical-device or native Safari test.
 
-For later exports, verify page order, update `mapping.json` when necessary and update the `PDF_URL` content revision. Publish the PDF, mapping and viewer together. The prior production version is commit `e34baec8dc2031b2b45bb641af9202fdacf3855f`; older Cloud Run files remain for rollback.
+Serve this directory locally on port 8765 and run `node tests/viewer.cjs` and `node tests/interactions.cjs` with Playwright installed. Set `TEST_URL` and `CHROMIUM_PATH` as needed.
+
+Rollback to the previous 53-page production version: `45e2ce25b8709d52cf4b79b4bf15362dc717e049`.

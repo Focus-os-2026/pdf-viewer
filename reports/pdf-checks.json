@@ -1,444 +1,622 @@
 {
-  "sourceDriveURL": "https://drive.google.com/file/d/1UticHdyn0h7Etq8Vnb6vosYxOI8tCRsC/view",
-  "sourceBytes": 49463778,
-  "servedBytes": 14344625,
-  "sourceSHA256": "a488545f73a4615de2c2f0127440a1163aaf2ef120281f59006a3e00af19b865",
-  "servedSHA256": "4295e6c74e8e8a533ad475b55dca62850e9ba71208b444902fb7cef1b4c5334b",
-  "pages": 53,
-  "optimization": "lossless deduplication, PNG predictors and Flate/object-stream compression; no image resampling or lossy re-encoding",
+  "sourceDriveURL": "https://drive.google.com/file/d/1RQ41C80w-62om_GpyjUd1PksJesIP02y/view",
+  "sourceModifiedAt": "2026-11-08T05:07:36.527Z",
+  "pages": 56,
+  "sourceBytes": 132574187,
+  "servedBytes": 27192217,
+  "sourceSHA256": "e094e886cf987ad4bbe28727e37b8430f767f9660b726ffdc056a4eed1f5c6b1",
+  "servedSHA256": "570141e033420ace3909f863d4dfe6d5cebf1c840e684fffa92fc0627aaed16e",
+  "optimization": "lossless deduplication, PNG prediction, Flate and object-stream compression; no resampling or lossy recompression",
+  "bookmarksIdentical": true,
   "checks": [
     {
       "page": 1,
       "pixelIdentical": true,
       "textIdentical": true,
+      "linksIdentical": true,
       "qrURLs": [],
-      "samePosition": true,
-      "contentMatch": 1.0
+      "qrMappingResult": "CATEGORY_PAGE"
     },
     {
       "page": 2,
       "pixelIdentical": true,
       "textIdentical": true,
-      "qrURLs": [],
-      "samePosition": true,
-      "contentMatch": 1.0
+      "linksIdentical": true,
+      "qrURLs": [
+        "https://focus-os-2026.github.io/pdf-viewer/?id=7"
+      ],
+      "legacyId": "7",
+      "qrMappingResult": "PASS"
     },
     {
       "page": 3,
       "pixelIdentical": true,
       "textIdentical": true,
-      "qrURLs": [],
-      "samePosition": true,
-      "contentMatch": 1.0
+      "linksIdentical": true,
+      "qrURLs": [
+        "https://focus-os-2026.github.io/pdf-viewer/?id=14"
+      ],
+      "legacyId": "14",
+      "qrMappingResult": "PASS"
     },
     {
       "page": 4,
       "pixelIdentical": true,
       "textIdentical": true,
-      "qrURLs": [],
-      "samePosition": true,
-      "contentMatch": 1.0
+      "linksIdentical": true,
+      "qrURLs": [
+        "https://focus-os-2026.github.io/pdf-viewer/?id=15"
+      ],
+      "legacyId": "15",
+      "qrMappingResult": "PASS"
     },
     {
       "page": 5,
       "pixelIdentical": true,
       "textIdentical": true,
-      "qrURLs": [],
-      "samePosition": true,
-      "contentMatch": 1.0
+      "linksIdentical": true,
+      "qrURLs": [
+        "https://focus-os-2026.github.io/pdf-viewer/?id=17"
+      ],
+      "legacyId": "17",
+      "qrMappingResult": "PASS"
     },
     {
       "page": 6,
       "pixelIdentical": true,
       "textIdentical": true,
-      "qrURLs": [],
-      "samePosition": true,
-      "contentMatch": 1.0
+      "linksIdentical": true,
+      "qrURLs": [
+        "https://focus-os-2026.github.io/pdf-viewer/?id=19"
+      ],
+      "legacyId": "19",
+      "qrMappingResult": "PASS"
     },
     {
       "page": 7,
       "pixelIdentical": true,
       "textIdentical": true,
-      "qrURLs": [],
-      "samePosition": true,
-      "contentMatch": 1.0
+      "linksIdentical": true,
+      "qrURLs": [
+        "https://focus-os-2026.github.io/pdf-viewer/?id=20"
+      ],
+      "legacyId": "20",
+      "qrMappingResult": "PASS"
     },
     {
       "page": 8,
       "pixelIdentical": true,
       "textIdentical": true,
-      "qrURLs": [],
-      "samePosition": true,
-      "contentMatch": 1.0
+      "linksIdentical": true,
+      "qrURLs": [
+        "https://focus-os-2026.github.io/pdf-viewer/?id=23"
+      ],
+      "legacyId": "23",
+      "qrMappingResult": "PASS"
     },
     {
       "page": 9,
       "pixelIdentical": true,
       "textIdentical": true,
-      "qrURLs": [],
-      "samePosition": true,
-      "contentMatch": 1.0
+      "linksIdentical": true,
+      "qrURLs": [
+        "https://focus-os-2026.github.io/pdf-viewer/?id=25"
+      ],
+      "legacyId": "25",
+      "qrMappingResult": "PASS"
     },
     {
       "page": 10,
       "pixelIdentical": true,
       "textIdentical": true,
-      "qrURLs": [],
-      "samePosition": true,
-      "contentMatch": 1.0
+      "linksIdentical": true,
+      "qrURLs": [
+        "https://focus-os-2026.github.io/pdf-viewer/?id=26"
+      ],
+      "legacyId": "26",
+      "qrMappingResult": "PASS"
     },
     {
       "page": 11,
       "pixelIdentical": true,
       "textIdentical": true,
-      "qrURLs": [],
-      "samePosition": true,
-      "contentMatch": 1.0
+      "linksIdentical": true,
+      "qrURLs": [
+        "https://focus-os-2026.github.io/pdf-viewer/?id=30"
+      ],
+      "legacyId": "30",
+      "qrMappingResult": "PASS"
     },
     {
       "page": 12,
       "pixelIdentical": true,
       "textIdentical": true,
-      "qrURLs": [],
-      "samePosition": true,
-      "contentMatch": 1.0
+      "linksIdentical": true,
+      "qrURLs": [
+        "https://focus-os-2026.github.io/pdf-viewer/?id=60"
+      ],
+      "legacyId": "60",
+      "qrMappingResult": "PASS"
     },
     {
       "page": 13,
       "pixelIdentical": true,
       "textIdentical": true,
-      "qrURLs": [],
-      "samePosition": true,
-      "contentMatch": 1.0
+      "linksIdentical": true,
+      "qrURLs": [
+        "https://focus-os-2026.github.io/pdf-viewer/?id=69"
+      ],
+      "legacyId": "69",
+      "qrMappingResult": "PASS"
     },
     {
       "page": 14,
       "pixelIdentical": true,
       "textIdentical": true,
-      "qrURLs": [],
-      "samePosition": true,
-      "contentMatch": 1.0
+      "linksIdentical": true,
+      "qrURLs": [
+        "https://focus-os-2026.github.io/pdf-viewer/?id=70"
+      ],
+      "legacyId": "70",
+      "qrMappingResult": "PASS"
     },
     {
       "page": 15,
       "pixelIdentical": true,
       "textIdentical": true,
-      "qrURLs": [],
-      "samePosition": true,
-      "contentMatch": 1.0
+      "linksIdentical": true,
+      "qrURLs": [
+        "https://focus-os-2026.github.io/pdf-viewer/?id=71"
+      ],
+      "legacyId": "71",
+      "qrMappingResult": "PASS"
     },
     {
       "page": 16,
       "pixelIdentical": true,
       "textIdentical": true,
-      "qrURLs": [],
-      "samePosition": true,
-      "contentMatch": 1.0
+      "linksIdentical": true,
+      "qrURLs": [
+        "https://focus-os-2026.github.io/pdf-viewer/?id=72"
+      ],
+      "legacyId": "72",
+      "qrMappingResult": "PASS"
     },
     {
       "page": 17,
       "pixelIdentical": true,
       "textIdentical": true,
-      "qrURLs": [],
-      "samePosition": true,
-      "contentMatch": 1.0
+      "linksIdentical": true,
+      "qrURLs": [
+        "https://focus-os-2026.github.io/pdf-viewer/?id=73"
+      ],
+      "legacyId": "73",
+      "qrMappingResult": "PASS"
     },
     {
       "page": 18,
       "pixelIdentical": true,
       "textIdentical": true,
+      "linksIdentical": true,
       "qrURLs": [],
-      "samePosition": true,
-      "contentMatch": 1.0
+      "qrMappingResult": "CATEGORY_PAGE"
     },
     {
       "page": 19,
       "pixelIdentical": true,
       "textIdentical": true,
-      "qrURLs": [],
-      "samePosition": true,
-      "contentMatch": 1.0
+      "linksIdentical": true,
+      "qrURLs": [
+        "https://focus-os-2026.github.io/pdf-viewer/?id=2"
+      ],
+      "legacyId": "2",
+      "qrMappingResult": "PASS"
     },
     {
       "page": 20,
       "pixelIdentical": true,
       "textIdentical": true,
-      "qrURLs": [],
-      "samePosition": true,
-      "contentMatch": 1.0
+      "linksIdentical": true,
+      "qrURLs": [
+        "https://focus-os-2026.github.io/pdf-viewer/?id=3"
+      ],
+      "legacyId": "3",
+      "qrMappingResult": "PASS"
     },
     {
       "page": 21,
       "pixelIdentical": true,
       "textIdentical": true,
-      "qrURLs": [],
-      "samePosition": true,
-      "contentMatch": 1.0
+      "linksIdentical": true,
+      "qrURLs": [
+        "https://focus-os-2026.github.io/pdf-viewer/?id=4"
+      ],
+      "legacyId": "4",
+      "qrMappingResult": "PASS"
     },
     {
       "page": 22,
       "pixelIdentical": true,
       "textIdentical": true,
-      "qrURLs": [],
-      "samePosition": true,
-      "contentMatch": 1.0
+      "linksIdentical": true,
+      "qrURLs": [
+        "https://focus-os-2026.github.io/pdf-viewer/?id=13"
+      ],
+      "legacyId": "13",
+      "qrMappingResult": "PASS"
     },
     {
       "page": 23,
       "pixelIdentical": true,
       "textIdentical": true,
-      "qrURLs": [],
-      "samePosition": true,
-      "contentMatch": 1.0
+      "linksIdentical": true,
+      "qrURLs": [
+        "https://focus-os-2026.github.io/pdf-viewer/?id=21"
+      ],
+      "legacyId": "21",
+      "qrMappingResult": "PASS"
     },
     {
       "page": 24,
       "pixelIdentical": true,
       "textIdentical": true,
-      "qrURLs": [],
-      "samePosition": true,
-      "contentMatch": 1.0
+      "linksIdentical": true,
+      "qrURLs": [
+        "https://focus-os-2026.github.io/pdf-viewer/?id=49"
+      ],
+      "legacyId": "49",
+      "qrMappingResult": "PASS"
     },
     {
       "page": 25,
       "pixelIdentical": true,
       "textIdentical": true,
+      "linksIdentical": true,
       "qrURLs": [
-        "https://www.canvaqr.com/RGW79QqjiH"
+        "https://focus-os-2026.github.io/pdf-viewer/?id=51"
       ],
-      "samePosition": true,
-      "contentMatch": 1.0
+      "legacyId": "51",
+      "qrMappingResult": "PASS"
     },
     {
       "page": 26,
       "pixelIdentical": true,
       "textIdentical": true,
+      "linksIdentical": true,
       "qrURLs": [
-        "https://www.canvaqr.com/RGW79QqjiH"
+        "https://focus-os-2026.github.io/pdf-viewer/?id=56"
       ],
-      "samePosition": true,
-      "contentMatch": 1.0
+      "legacyId": "56",
+      "qrMappingResult": "PASS"
     },
     {
       "page": 27,
       "pixelIdentical": true,
       "textIdentical": true,
-      "qrURLs": [
-        "https://www.canvaqr.com/RGW79QqjiH"
-      ],
-      "samePosition": true,
-      "contentMatch": 1.0
+      "linksIdentical": true,
+      "qrURLs": [],
+      "qrMappingResult": "CATEGORY_PAGE"
     },
     {
       "page": 28,
       "pixelIdentical": true,
       "textIdentical": true,
-      "qrURLs": [],
-      "samePosition": true,
-      "contentMatch": 1.0
+      "linksIdentical": true,
+      "qrURLs": [
+        "https://focus-os-2026.github.io/pdf-viewer/?id=1"
+      ],
+      "legacyId": "1",
+      "qrMappingResult": "PASS"
     },
     {
       "page": 29,
       "pixelIdentical": true,
       "textIdentical": true,
-      "qrURLs": [],
-      "samePosition": true,
-      "contentMatch": 1.0
+      "linksIdentical": true,
+      "qrURLs": [
+        "https://focus-os-2026.github.io/pdf-viewer/?id=5"
+      ],
+      "legacyId": "5",
+      "qrMappingResult": "PASS"
     },
     {
       "page": 30,
       "pixelIdentical": true,
       "textIdentical": true,
-      "qrURLs": [],
-      "samePosition": true,
-      "contentMatch": 1.0
+      "linksIdentical": true,
+      "qrURLs": [
+        "https://focus-os-2026.github.io/pdf-viewer/?id=6"
+      ],
+      "legacyId": "6",
+      "qrMappingResult": "PASS"
     },
     {
       "page": 31,
       "pixelIdentical": true,
       "textIdentical": true,
-      "qrURLs": [],
-      "samePosition": true,
-      "contentMatch": 1.0
+      "linksIdentical": true,
+      "qrURLs": [
+        "https://focus-os-2026.github.io/pdf-viewer/?id=8"
+      ],
+      "legacyId": "8",
+      "qrMappingResult": "PASS"
     },
     {
       "page": 32,
       "pixelIdentical": true,
       "textIdentical": true,
-      "qrURLs": [],
-      "samePosition": true,
-      "contentMatch": 1.0
+      "linksIdentical": true,
+      "qrURLs": [
+        "https://focus-os-2026.github.io/pdf-viewer/?id=12"
+      ],
+      "legacyId": "12",
+      "qrMappingResult": "PASS"
     },
     {
       "page": 33,
       "pixelIdentical": true,
       "textIdentical": true,
-      "qrURLs": [],
-      "samePosition": true,
-      "contentMatch": 1.0
+      "linksIdentical": true,
+      "qrURLs": [
+        "https://focus-os-2026.github.io/pdf-viewer/?id=16"
+      ],
+      "legacyId": "16",
+      "qrMappingResult": "PASS"
     },
     {
       "page": 34,
       "pixelIdentical": true,
       "textIdentical": true,
-      "qrURLs": [],
-      "samePosition": true,
-      "contentMatch": 0.8889
+      "linksIdentical": true,
+      "qrURLs": [
+        "https://focus-os-2026.github.io/pdf-viewer/?id=18"
+      ],
+      "legacyId": "18",
+      "qrMappingResult": "PASS"
     },
     {
       "page": 35,
       "pixelIdentical": true,
       "textIdentical": true,
-      "qrURLs": [],
-      "samePosition": true,
-      "contentMatch": 1.0
+      "linksIdentical": true,
+      "qrURLs": [
+        "https://focus-os-2026.github.io/pdf-viewer/?id=22"
+      ],
+      "legacyId": "22",
+      "qrMappingResult": "PASS"
     },
     {
       "page": 36,
       "pixelIdentical": true,
       "textIdentical": true,
-      "qrURLs": [],
-      "samePosition": true,
-      "contentMatch": 1.0
+      "linksIdentical": true,
+      "qrURLs": [
+        "https://focus-os-2026.github.io/pdf-viewer/?id=27"
+      ],
+      "legacyId": "27",
+      "qrMappingResult": "PASS"
     },
     {
       "page": 37,
       "pixelIdentical": true,
       "textIdentical": true,
-      "qrURLs": [],
-      "samePosition": true,
-      "contentMatch": 1.0
+      "linksIdentical": true,
+      "qrURLs": [
+        "https://focus-os-2026.github.io/pdf-viewer/?id=33"
+      ],
+      "legacyId": "33",
+      "qrMappingResult": "PASS"
     },
     {
       "page": 38,
       "pixelIdentical": true,
       "textIdentical": true,
-      "qrURLs": [],
-      "samePosition": true,
-      "contentMatch": 1.0
+      "linksIdentical": true,
+      "qrURLs": [
+        "https://focus-os-2026.github.io/pdf-viewer/?id=42"
+      ],
+      "legacyId": "42",
+      "qrMappingResult": "PASS"
     },
     {
       "page": 39,
       "pixelIdentical": true,
       "textIdentical": true,
-      "qrURLs": [],
-      "samePosition": true,
-      "contentMatch": 1.0
+      "linksIdentical": true,
+      "qrURLs": [
+        "https://focus-os-2026.github.io/pdf-viewer/?id=45"
+      ],
+      "legacyId": "45",
+      "qrMappingResult": "PASS"
     },
     {
       "page": 40,
       "pixelIdentical": true,
       "textIdentical": true,
-      "qrURLs": [],
-      "samePosition": true,
-      "contentMatch": 1.0
+      "linksIdentical": true,
+      "qrURLs": [
+        "https://focus-os-2026.github.io/pdf-viewer/?id=52"
+      ],
+      "legacyId": "52",
+      "qrMappingResult": "PASS"
     },
     {
       "page": 41,
       "pixelIdentical": true,
       "textIdentical": true,
-      "qrURLs": [],
-      "samePosition": true,
-      "contentMatch": 1.0
+      "linksIdentical": true,
+      "qrURLs": [
+        "https://focus-os-2026.github.io/pdf-viewer/?id=53"
+      ],
+      "legacyId": "53",
+      "qrMappingResult": "PASS"
     },
     {
       "page": 42,
       "pixelIdentical": true,
       "textIdentical": true,
-      "qrURLs": [],
-      "samePosition": true,
-      "contentMatch": 1.0
+      "linksIdentical": true,
+      "qrURLs": [
+        "https://focus-os-2026.github.io/pdf-viewer/?id=54"
+      ],
+      "legacyId": "54",
+      "qrMappingResult": "PASS"
     },
     {
       "page": 43,
       "pixelIdentical": true,
       "textIdentical": true,
-      "qrURLs": [],
-      "samePosition": true,
-      "contentMatch": 1.0
+      "linksIdentical": true,
+      "qrURLs": [
+        "https://focus-os-2026.github.io/pdf-viewer/?id=55"
+      ],
+      "legacyId": "55",
+      "qrMappingResult": "PASS"
     },
     {
       "page": 44,
       "pixelIdentical": true,
       "textIdentical": true,
-      "qrURLs": [],
-      "samePosition": true,
-      "contentMatch": 1.0
+      "linksIdentical": true,
+      "qrURLs": [
+        "https://focus-os-2026.github.io/pdf-viewer/?id=57"
+      ],
+      "legacyId": "57",
+      "qrMappingResult": "PASS"
     },
     {
       "page": 45,
       "pixelIdentical": true,
       "textIdentical": true,
-      "qrURLs": [],
-      "samePosition": true,
-      "contentMatch": 1.0
+      "linksIdentical": true,
+      "qrURLs": [
+        "https://focus-os-2026.github.io/pdf-viewer/?id=58"
+      ],
+      "legacyId": "58",
+      "qrMappingResult": "PASS"
     },
     {
       "page": 46,
       "pixelIdentical": true,
       "textIdentical": true,
-      "qrURLs": [],
-      "samePosition": true,
-      "contentMatch": 1.0
+      "linksIdentical": true,
+      "qrURLs": [
+        "https://focus-os-2026.github.io/pdf-viewer/?id=59"
+      ],
+      "legacyId": "59",
+      "qrMappingResult": "PASS"
     },
     {
       "page": 47,
       "pixelIdentical": true,
       "textIdentical": true,
-      "qrURLs": [],
-      "samePosition": true,
-      "contentMatch": 1.0
+      "linksIdentical": true,
+      "qrURLs": [
+        "https://focus-os-2026.github.io/pdf-viewer/?id=61"
+      ],
+      "legacyId": "61",
+      "qrMappingResult": "PASS"
     },
     {
       "page": 48,
       "pixelIdentical": true,
       "textIdentical": true,
-      "qrURLs": [],
-      "samePosition": true,
-      "contentMatch": 1.0
+      "linksIdentical": true,
+      "qrURLs": [
+        "https://focus-os-2026.github.io/pdf-viewer/?id=62"
+      ],
+      "legacyId": "62",
+      "qrMappingResult": "PASS"
     },
     {
       "page": 49,
       "pixelIdentical": true,
       "textIdentical": true,
-      "qrURLs": [],
-      "samePosition": true,
-      "contentMatch": 1.0
+      "linksIdentical": true,
+      "qrURLs": [
+        "https://focus-os-2026.github.io/pdf-viewer/?id=64"
+      ],
+      "legacyId": "64",
+      "qrMappingResult": "PASS"
     },
     {
       "page": 50,
       "pixelIdentical": true,
       "textIdentical": true,
-      "qrURLs": [],
-      "samePosition": true,
-      "contentMatch": 1.0
+      "linksIdentical": true,
+      "qrURLs": [
+        "https://focus-os-2026.github.io/pdf-viewer/?id=65"
+      ],
+      "legacyId": "65",
+      "qrMappingResult": "PASS"
     },
     {
       "page": 51,
       "pixelIdentical": true,
       "textIdentical": true,
-      "qrURLs": [],
-      "samePosition": true,
-      "contentMatch": 1.0
+      "linksIdentical": true,
+      "qrURLs": [
+        "https://focus-os-2026.github.io/pdf-viewer/?id=66"
+      ],
+      "legacyId": "66",
+      "qrMappingResult": "PASS"
     },
     {
       "page": 52,
       "pixelIdentical": true,
       "textIdentical": true,
-      "qrURLs": [],
-      "samePosition": true,
-      "contentMatch": 1.0
+      "linksIdentical": true,
+      "qrURLs": [
+        "https://focus-os-2026.github.io/pdf-viewer/?id=68"
+      ],
+      "legacyId": "68",
+      "qrMappingResult": "PASS"
     },
     {
       "page": 53,
       "pixelIdentical": true,
       "textIdentical": true,
-      "qrURLs": [],
-      "samePosition": true,
-      "contentMatch": 1.0
+      "linksIdentical": true,
+      "qrURLs": [
+        "https://focus-os-2026.github.io/pdf-viewer/?id=74"
+      ],
+      "legacyId": "74",
+      "qrMappingResult": "PASS"
+    },
+    {
+      "page": 54,
+      "pixelIdentical": true,
+      "textIdentical": true,
+      "linksIdentical": true,
+      "qrURLs": [
+        "https://focus-os-2026.github.io/pdf-viewer/?id=75"
+      ],
+      "legacyId": "75",
+      "qrMappingResult": "PASS"
+    },
+    {
+      "page": 55,
+      "pixelIdentical": true,
+      "textIdentical": true,
+      "linksIdentical": true,
+      "qrURLs": [
+        "https://focus-os-2026.github.io/pdf-viewer/?id=76"
+      ],
+      "legacyId": "76",
+      "qrMappingResult": "PASS"
+    },
+    {
+      "page": 56,
+      "pixelIdentical": true,
+      "textIdentical": true,
+      "linksIdentical": true,
+      "qrURLs": [
+        "https://focus-os-2026.github.io/pdf-viewer/?id=77"
+      ],
+      "legacyId": "77",
+      "qrMappingResult": "PASS"
     }
   ],
-  "linksPreserved": true,
-  "bookmarksPreserved": true,
-  "mappingUnchanged": true
+  "embeddedQrChecks": "53/53 original IDs match the correct work and new page",
+  "sameBytesAsPreviousDriveLink": true
 }

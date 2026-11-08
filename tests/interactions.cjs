@@ -1,5 +1,12 @@
 const { chromium } = require("playwright");
 const assert = require("node:assert/strict");
+const fs = require("fs"),
+  path = require("path");
+const mapping = JSON.parse(
+  fs.readFileSync(path.join(__dirname, "../mapping.json")),
+);
+const startPage = mapping.idToPage["12"],
+  lastPage = mapping.pageCount;
 (async () => {
   const browser = await chromium.launch({
     headless: true,
@@ -21,15 +28,15 @@ const assert = require("node:assert/strict");
       .locator(`canvas[data-page="${n}"]`)
       .waitFor({ state: "visible", timeout: 30000 });
   await p.goto(base + "?id=12");
-  await rendered(9);
+  await rendered(startPage);
   assert(await p.locator("#tools").isHidden());
   assert.equal(await p.locator("#copy,header,.brand,.hint").count(), 0);
   await p.locator("#tool-toggle").click();
   await p.locator("#plus").click();
-  await rendered(9);
+  await rendered(startPage);
   assert.equal(await p.locator("#zoom").textContent(), "115%");
   await p.locator("#fit").click();
-  await rendered(9);
+  await rendered(startPage);
   assert(await p.locator("#tools").isHidden());
   if (await p.evaluate(() => document.fullscreenEnabled)) {
     await p.locator("#tool-toggle").click();
@@ -38,7 +45,7 @@ const assert = require("node:assert/strict");
     await p.locator("#tool-toggle").click();
     await p.locator("#fullscreen").click();
     await p.waitForFunction(() => !document.fullscreenElement);
-    await rendered(9);
+    await rendered(startPage);
   }
   const cdp = await context.newCDPSession(p);
   const top = await p.locator("#paper").evaluate((e) => e.scrollTop);
@@ -69,13 +76,13 @@ const assert = require("node:assert/strict");
     Math.abs((await p.locator("#paper").evaluate((e) => e.scrollTop)) - top) <
       2,
   );
-  assert.equal(await p.locator("#page").inputValue(), "9");
+  assert.equal(await p.locator("#page").inputValue(), String(startPage));
   await drag({ x: 195, y: 650 }, { x: 195, y: 100 });
   await p.waitForFunction(
     (start) => document.querySelector("#paper").scrollTop > start + 100,
     top,
   );
-  assert(Number(await p.locator("#page").inputValue()) >= 10);
+  assert(Number(await p.locator("#page").inputValue()) >= startPage + 1);
   await cdp.send("Input.dispatchTouchEvent", {
     type: "touchStart",
     touchPoints: [{ x: 195, y: 400 }],
@@ -85,7 +92,7 @@ const assert = require("node:assert/strict");
     touchPoints: [],
   });
   // Rapid scroll reversals cancel obsolete renders and release offscreen canvases.
-  for (const n of [40, 3, 50, 1, 53]) {
+  for (const n of [40, 3, 50, 1, lastPage]) {
     await p.locator("#paper").evaluate((e, n) => {
       e.scrollTop = document.querySelector(
         `.pdf-page[data-page="${n}"]`,
@@ -93,13 +100,13 @@ const assert = require("node:assert/strict");
     }, n);
     await p.evaluate(() => new Promise(requestAnimationFrame));
   }
-  await rendered(53);
+  await rendered(lastPage);
   await p.waitForFunction(
     () => new URL(location.href).searchParams.get("id") === "77",
   );
-  assert.equal(await p.locator('canvas[data-page="9"]').count(), 0);
+  assert.equal(await p.locator(`canvas[data-page="${startPage}"]`).count(), 0);
   await p.keyboard.press("ArrowLeft");
-  await rendered(52);
+  await rendered(lastPage - 1);
   const before = await p.locator("#paper").evaluate((e) => e.scrollTop);
   await p.keyboard.press("PageUp");
   await p.waitForFunction(
@@ -123,7 +130,10 @@ const assert = require("node:assert/strict");
     r.fulfill({
       status: 200,
       contentType: "application/json",
-      body: JSON.stringify({ pageCount: 53, idToPage: { 1: 1, 2: 1 } }),
+      body: JSON.stringify({
+        pageCount: mapping.pageCount,
+        idToPage: { 1: 1, 2: 1 },
+      }),
     }),
   );
   await p.goto(base + "?id=1");

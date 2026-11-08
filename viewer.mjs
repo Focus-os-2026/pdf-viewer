@@ -4,7 +4,7 @@ const $ = (s) => document.querySelector(s);
 const paper = $("#paper"),
   pages = $("#pages"),
   status = $("#status");
-const PDF_URL = "./innovation-final.pdf?v=4295e6c74e8e";
+const PDF_URL = "./innovation-final.pdf?v=570141e03342";
 const GAP = 8,
   PIXEL_BUDGET = 8_000_000;
 let doc,
@@ -248,10 +248,17 @@ async function start() {
       }).promise,
     ]);
     const entries = Object.entries(mapping.idToPage || {});
+    const sectionPages = mapping.sectionPages ?? [];
+    if (!Array.isArray(sectionPages)) throw Error("Mapping ไม่ตรงกับเอกสาร");
+    const assignedPages = [...entries.map(([, p]) => p), ...sectionPages];
     if (
       mapping.pageCount !== doc.numPages ||
-      entries.length !== doc.numPages ||
-      new Set(entries.map(([, p]) => p)).size !== doc.numPages ||
+      entries.length === 0 ||
+      assignedPages.length !== doc.numPages ||
+      new Set(assignedPages).size !== doc.numPages ||
+      sectionPages.some(
+        (p) => !Number.isInteger(p) || p < 1 || p > doc.numPages,
+      ) ||
       entries.some(
         ([id, p]) =>
           positiveInteger(id) === null ||
