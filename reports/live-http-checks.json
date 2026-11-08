@@ -1,0 +1,25 @@
+{
+  "verifiedAt": "2026-11-08T12:35:41.641427+07:00",
+  "site": "https://focus-os-2026.github.io/pdf-viewer/",
+  "runtimeCommit": "fa95030231c8decd55285e74f9a4d18f3a70339b",
+  "workflow": "https://github.com/Focus-os-2026/pdf-viewer/actions/runs/42451290157",
+  "pageCount": 56,
+  "legacyIdCount": 53,
+  "sectionPages": [
+    1,
+    18,
+    27
+  ],
+  "productionFilesMatchTestedFiles": true,
+  "servedPdfSHA256": "570141e033420ace3909f863d4dfe6d5cebf1c840e684fffa92fc0627aaed16e",
+  "rangeStatus": 206,
+  "contentRange": "bytes 0-1023/27192217",
+  "rangeBytes": 1024,
+  "workflowConclusion": "success",
+  "browserChecksCompletedAt": "2026-11-08T12:40:44.070549+07:00",
+  "desktopLegacyIdPasses": 53,
+  "mobileLegacyIdPasses": 53,
+  "dividerRoutePasses": 6,
+  "totalEntryChecks": 112,
+  "uiChecks": "PASS"
+}

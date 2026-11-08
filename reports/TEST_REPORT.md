@@ -83,6 +83,19 @@ Divider pages 1, 18 and 27: PASS in both profiles.
 
 ## After publication
 
-Live-site verification will be recorded after deployment.
+Runtime commit: `fa95030231c8decd55285e74f9a4d18f3a70339b`.
+
+- GitHub Pages [deployment](https://github.com/Focus-os-2026/pdf-viewer/actions/runs/42451290157): success.
+- Published HTML, reader module, 56-page PDF and remapped stable IDs match the tested files byte-for-byte.
+- PDF HTTP Range: `206`, `Content-Range: bytes 0-1023/27192217`, 1,024 bytes returned.
+- Live native touch, scrolling, zoom, fullscreen, rotation and error handling checks pass.
+- Live desktop: **53/53 legacy IDs + 3/3 divider routes PASS**.
+- Live mobile emulation: **53/53 legacy IDs + 3/3 divider routes PASS**.
+- Live total: **112/112 entry checks PASS**, plus scrolling, zoom, page jumps, eviction, stable document height, first/last boundaries, ID precedence, invalid IDs and error cases.
+- `?id=1` opens Young Rice Jelly on page 28; `?id=77` opens KORA on page 56. All original QR URLs retain their original work identities.
+
+Managed Chromium uses `TEST_IGNORE_HTTPS_ERRORS=1` for the environment's TLS inspection. Independent HTTPS downloads use inherited CA trust with certificate verification enabled. Application TLS settings were not changed.
+
+[Live HTTP checks](live-http-checks.json).
 
 [Browser results](browser-results.json) · [Source PDF checks](pdf-checks.json) · [ID identity evidence](id-crosswalk.json)
