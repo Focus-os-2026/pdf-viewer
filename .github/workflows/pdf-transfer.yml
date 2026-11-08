@@ -1,0 +1,25 @@
+name: Assemble verified sorted 56-page PDF
+on:
+  push:
+    branches: [codex/pdf-sorted-56]
+    paths:
+      - '.pdf-transfer/**'
+      - '.github/workflows/pdf-transfer.yml'
+permissions:
+  contents: write
+jobs:
+  assemble:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: codex/pdf-sorted-56
+      - name: Assemble and verify losslessly optimized PDF
+        run: |
+          cat .pdf-transfer/part-1 .pdf-transfer/part-2 .pdf-transfer/part-3 .pdf-transfer/part-4 > innovation-final.pdf
+          echo '570141e033420ace3909f863d4dfe6d5cebf1c840e684fffa92fc0627aaed16e  innovation-final.pdf' | sha256sum --check -
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add innovation-final.pdf
+          git commit -m 'Update sorted 56-page PDF from supplied Drive source'
+          git push origin HEAD:refs/heads/codex/pdf-sorted-56
