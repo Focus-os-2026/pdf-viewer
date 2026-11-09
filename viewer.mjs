@@ -4,7 +4,9 @@ const $ = (s) => document.querySelector(s);
 const paper = $("#paper"),
   pages = $("#pages"),
   status = $("#status");
-const PDF_URL = "./innovation-final.pdf?v=570141e03342";
+const CURRENT_PDF = "./innovation-final.pdf?v=c1b99ca34cfc";
+const ARCHIVE_PDF = "./innovation-archive.pdf?v=45956dd887ba";
+let pdfUrl = CURRENT_PDF;
 const GAP = 8,
   PIXEL_BUDGET = 8_000_000;
 let doc,
@@ -46,7 +48,7 @@ function controls() {
   $("#prev").disabled = !ready || current <= 1;
   $("#next").disabled = !ready || current >= doc.numPages;
   $("#zoom").textContent = Math.round(zoom * 100) + "%";
-  $("#full").href = PDF_URL + "#page=" + current;
+  $("#full").href = pdfUrl + "#page=" + current;
 }
 function setUrl() {
   clearTimeout(urlTimer);
@@ -235,18 +237,22 @@ function changeZoom(value) {
 }
 async function start() {
   try {
-    [mapping, doc] = await Promise.all([
-      fetch("./mapping.json", { cache: "no-cache" }).then((r) => {
-        if (!r.ok) throw Error("โหลด Mapping ไม่สำเร็จ");
-        return r.json();
-      }),
-      pdfjsLib.getDocument({
-        url: PDF_URL,
-        disableAutoFetch: true,
-        disableStream: true,
-        rangeChunkSize: 262144,
-      }).promise,
-    ]);
+    const response = await fetch("./mapping.json", { cache: "no-cache" });
+    if (!response.ok) throw Error("โหลด Mapping ไม่สำเร็จ");
+    const currentMapping = await response.json();
+    const id = positiveInteger(new URLSearchParams(location.search).get("id"));
+    if (currentMapping.archive?.idToPage[id]) {
+      mapping = currentMapping.archive;
+      pdfUrl = ARCHIVE_PDF;
+    } else {
+      mapping = currentMapping;
+    }
+    doc = await pdfjsLib.getDocument({
+      url: pdfUrl,
+      disableAutoFetch: true,
+      disableStream: true,
+      rangeChunkSize: 262144,
+    }).promise;
     const entries = Object.entries(mapping.idToPage || {});
     const sectionPages = mapping.sectionPages ?? [];
     if (!Array.isArray(sectionPages)) throw Error("Mapping ไม่ตรงกับเอกสาร");
