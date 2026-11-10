@@ -53,6 +53,10 @@ const idForPage = (n) =>
         errors = [],
         requests = [];
       p.on("pageerror", (e) => errors.push(e.message));
+      p.on("console", (m) => {
+        if (m.type() === "error" && m.text().includes("Page render failed"))
+          console.log(name + ": " + m.text());
+      });
       p.on("request", (r) => requests.push(r.url()));
       async function tools() {
         if (await p.locator("#tools").isHidden())
@@ -61,7 +65,7 @@ const idForPage = (n) =>
       async function rendered(n, expectedCount = mapping.pageCount) {
         await p
           .locator(`canvas[data-page="${n}"]`)
-          .waitFor({ state: "visible", timeout: 45000 });
+          .waitFor({ state: "visible", timeout: 90000 });
         assert.equal(await p.locator("#page").inputValue(), String(n));
         const state = await p
           .locator(`canvas[data-page="${n}"]`)

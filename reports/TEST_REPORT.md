@@ -77,6 +77,20 @@ Divider pages 1, 17 and 26 pass in both profiles.
 
 ## After publication
 
-Production verification will be recorded after deployment.
+Runtime commit: `b7772f73d8f58b42a0c36865cd7a764f6a10b3c6`.
+
+- GitHub Pages [deployment](https://github.com/Focus-os-2026/pdf-viewer/actions/runs/42746207563): success.
+- Downloaded production PDF is byte-identical to the uploaded final (SHA-256 matches). The archive is also unchanged.
+- Production HTML, reader module and mapping match the tested files.
+- PDF HTTP Range: `206`, `Content-Range: bytes 0-1023/31464258`, exactly 1,024 bytes returned.
+- Live native touch, scrolling, zoom, fullscreen, rotation and error-path tests pass.
+- Live desktop: **53/53 stable IDs + 3/3 current divider routes PASS**.
+- Live mobile emulation: **53/53 stable IDs + 3/3 current divider routes PASS**.
+- Total live entry checks: **112/112 PASS**, including correct main/archive document selection, mapped pages, scrolling, zoom, boundaries, rotation, invalid links and error handling.
+- One initial live stress run timed out after 45 seconds during a far-page jump. An isolated reproduction passed; the full live regression rerun with a 90-second render allowance also passed. No viewer/runtime change was made in response to that isolated timeout.
+
+The managed Chromium tests use `TEST_IGNORE_HTTPS_ERRORS=1` for TLS inspection in the environment. Independent HTTPS downloads use inherited CA trust with certificate verification enabled. Application TLS behavior was not changed.
+
+[HTTP evidence](live-http-checks.json).
 
 [Browser results](browser-results.json) · [File and embedded QR evidence](pdf-checks.json) · [ID routes](id-crosswalk.json)
