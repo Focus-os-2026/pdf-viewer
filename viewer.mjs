@@ -4,7 +4,7 @@ const $ = (s) => document.querySelector(s);
 const paper = $("#paper"),
   pages = $("#pages"),
   status = $("#status");
-const CURRENT_PDF = "./innovation-final.pdf?v=c1b99ca34cfc";
+const CURRENT_PDF = "./innovation-final.pdf?v=f314ac32ccea";
 const ARCHIVE_PDF = "./innovation-archive.pdf?v=45956dd887ba";
 let pdfUrl = CURRENT_PDF;
 const GAP = 8,

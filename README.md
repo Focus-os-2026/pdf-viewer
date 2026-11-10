@@ -2,20 +2,30 @@
 
 Production: **https://focus-os-2026.github.io/pdf-viewer/**
 
-## Current edition
+## Final supplied on 2026-11-10
 
-The 51-page PDF supplied on 2026-11-09 is served byte-for-byte from GitHub Pages as `innovation-final.pdf`. It contains 48 works and three divider pages at pages 1, 17 and 26. Its SHA-256 is `c1b99ca34cfc2511d324d92824c8716d01e7fe4bf859e25dd9207ba5f3299d23`.
+The current PDF is the user's final `Infographic_1080x1920_7_รวม_32MB.pdf`, served byte-for-byte as `innovation-final.pdf` with no recompression, resampling or content changes.
 
-All 53 stable QR IDs still open their original works. `mapping.json` maps 48 IDs to the current PDF. IDs 25, 61, 64, 65 and 66 open the same works from the previous edition in `innovation-archive.pdf`. The archive is reached by ID and the main viewer opens the current edition by default. If both `id` and `page` are present, the ID takes precedence.
+- Size: 31,464,258 bytes.
+- Pages: 51 (48 works and 3 category dividers at pages 1, 17 and 26).
+- SHA-256: `f314ac32ccea2d93018bc810db99a7f46914867898c9362de934fbf104163ad3`.
 
-The viewer, PDFs, mapping and PDF.js are hosted on GitHub Pages. Publish the PDFs, mapping and cache revisions together.
+All 48 embedded QR codes in this final were decoded and agree with the existing work IDs and current page mapping. The final's ordering matches the currently published 51-page mapping, so no work identities are renumbered.
 
-## Reader and validation
+## Existing QR links
 
-Continuous vertical scrolling, 9:16 proportions, hidden icon tools and the Thailand Innovation Showcase tab title are retained. Nearby pages are painted on demand; distant canvases are released. Render tasks are serialized and retained canvases share an eight-million-pixel budget. HTTP Range loading and a fixed PDF revision support mobile opening.
+All 53 original `?id=` links continue to open their works. As in the previous production version, IDs 25, 61, 64, 65 and 66 open the same five works from `innovation-archive.pdf`; that file is unchanged. The homepage and normal page navigation use the new 51-page final. IDs have priority over `?page=`.
 
-See [validation results](reports/TEST_REPORT.md), [PDF comparisons](reports/pdf-checks.json) and [all ID mappings](reports/id-crosswalk.json). The linked reports document the previous 56-page edition. Mobile emulation is not a physical-device or native Safari test.
+Main-document QR checks: 48/48. Archive QR checks: 5/5. [Routing evidence](reports/id-crosswalk.json).
 
-Serve this directory locally on port 8765 and run `node tests/viewer.cjs` and `node tests/interactions.cjs` with Playwright installed. Set `TEST_URL` and `CHROMIUM_PATH` as needed.
+## Viewer and publication
 
-The previous 56-page production version is `613a8dd2211497b5ba42c7777625511caf2610ea`.
+Continuous vertical scrolling, 9:16 proportions, hidden tools and the Thailand Innovation Showcase tab title are retained. Canvases are virtualized with an eight-million-pixel budget. PDFs, PDF.js, mapping and viewer are loaded directly from GitHub Pages; Drive is not a runtime source.
+
+The current PDF and viewer URLs use content revisions to avoid serving the previous final from cache. Future Drive updates still require a validated publication of the static website.
+
+[Validation report](reports/TEST_REPORT.md) · [PDF/QR evidence](reports/pdf-checks.json).
+
+Tests include all 53 IDs in both main/archive modes, the three divider routes, scrolling, zoom, fullscreen, rotation and errors. Mobile testing uses Chromium emulation, not physical iOS/Android devices or native Safari. Serve locally on port 8765 and run `node tests/viewer.cjs` and `node tests/interactions.cjs` with Playwright installed; use `TEST_URL`/`CHROMIUM_PATH` as needed.
+
+Previous production commit: `959c0bfd8d4caaf4dca3e886742f13b0d048ab29`.

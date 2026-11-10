@@ -1,101 +1,82 @@
-# Validation — Category-sorted 56-page final
+# Validation — Final PDF, 2026-11-10
 
-Date: 2026-11-08 (Asia/Bangkok). Source: [latest supplied Drive file](https://drive.google.com/file/d/1RQ41C80w-62om_GpyjUd1PksJesIP02y/view).
+## Supplied final
 
-## Identity and file checks
-
-- The latest Drive link and the earlier folder's current PDF are byte-identical (132,574,187 bytes).
-- 56 portrait pages: the same 53 works, reordered, plus category dividers at pages 1, 18 and 27. Canva metadata confirms 56 pages.
-- User decision: preserve all 53 existing IDs, following the same works after reordering. Do not renumber IDs to match physical pages.
-- All 53 embedded QR codes decode to the original website URLs and match the remapped work/page. No QR or public URL was edited.
-- ID 12's title, author, organization and embedded QR confirm the ginger beverage on page 32; its supplied description was updated, so matching is not based solely on unchanged body text.
-- Lossless PDF size: 27,192,217 bytes, 79.5% smaller than the source.
-- Every source/optimized page renders identically at scale 3 (216 DPI). Text, links and bookmarks match across all 56 pages.
-- The stable-ID targets and explicit divider pages cover all 56 pages exactly, with no duplicate or missing page assignments.
+- File: `Infographic_1080x1920_7_รวม_32MB.pdf`.
+- 31,464,258 bytes; 51 portrait pages; served exactly as supplied, without recompression or resampling.
+- SHA-256: `f314ac32ccea2d93018bc810db99a7f46914867898c9362de934fbf104163ad3`.
+- All 48 embedded QR codes match their existing work IDs and page positions.
+- The existing archive remains unchanged (SHA-256 `45956dd887bac17c2d31b139105f3eb37ba0a0a47b2f0da18d7e61dacf399dfa`); all 5 embedded archive QR codes match their original IDs.
+- The previously deployed main/archive routing is preserved: 48 IDs in the final, 5 IDs in the archive, and 3 current divider pages. No ID is reused or renumbered.
 
 ## Before publication
 
-**112/112 entry checks PASS**: 53 legacy ID routes plus 3 divider-page routes in each of desktop and mobile emulation. Tests check mapped-page alignment, nonblank rendering, original ID preservation, hidden tools, the 56-page count and bounded canvas allocation.
+**112/112 entry checks PASS** across Chromium desktop and mobile emulation: 96 current-PDF ID entries, 10 archive-PDF ID entries, and 6 divider-page entries. Tests verify nonblank mapped pages, initial scroll alignment, original URL/ID preservation, correct document selection and page count, hidden tools, bounded canvases and the correct Full PDF target.
 
-Native vertical touch, wheel scrolling across page boundaries, stable-ID URL updates, far jumps, offscreen eviction, constant scroll height, zoom, fit, fullscreen, rotation and invalid-ID/page error handling pass. Header text, instructions and Copy Link remain absent.
+Native vertical touch, wheel scrolling, page/ID updates, archive scrolling, rapid jumps, eviction, constant document height, zoom/fit, fullscreen, rotation, first/last pages, ID precedence and error cases pass. Mobile emulation is not physical iOS/Android or native Safari testing.
 
-Mobile profiles are Chromium emulation, not physical iOS/Android or native Safari tests.
+## All stable IDs
 
-## Legacy ID crosswalk
+| ID | Document | Page | Desktop | Mobile |
+|---:|:---|---:|:---:|:---:|
+| 1 | Final | 27 | PASS | PASS |
+| 2 | Final | 18 | PASS | PASS |
+| 3 | Final | 19 | PASS | PASS |
+| 4 | Final | 20 | PASS | PASS |
+| 5 | Final | 28 | PASS | PASS |
+| 6 | Final | 29 | PASS | PASS |
+| 7 | Final | 2 | PASS | PASS |
+| 8 | Final | 30 | PASS | PASS |
+| 12 | Final | 31 | PASS | PASS |
+| 13 | Final | 21 | PASS | PASS |
+| 14 | Final | 3 | PASS | PASS |
+| 15 | Final | 4 | PASS | PASS |
+| 16 | Final | 32 | PASS | PASS |
+| 17 | Final | 5 | PASS | PASS |
+| 18 | Final | 33 | PASS | PASS |
+| 19 | Final | 6 | PASS | PASS |
+| 20 | Final | 7 | PASS | PASS |
+| 21 | Final | 22 | PASS | PASS |
+| 22 | Final | 34 | PASS | PASS |
+| 23 | Final | 8 | PASS | PASS |
+| 26 | Final | 9 | PASS | PASS |
+| 27 | Final | 35 | PASS | PASS |
+| 30 | Final | 10 | PASS | PASS |
+| 33 | Final | 36 | PASS | PASS |
+| 42 | Final | 37 | PASS | PASS |
+| 45 | Final | 38 | PASS | PASS |
+| 49 | Final | 23 | PASS | PASS |
+| 51 | Final | 24 | PASS | PASS |
+| 52 | Final | 39 | PASS | PASS |
+| 53 | Final | 40 | PASS | PASS |
+| 54 | Final | 41 | PASS | PASS |
+| 55 | Final | 42 | PASS | PASS |
+| 56 | Final | 25 | PASS | PASS |
+| 57 | Final | 43 | PASS | PASS |
+| 58 | Final | 44 | PASS | PASS |
+| 59 | Final | 45 | PASS | PASS |
+| 60 | Final | 11 | PASS | PASS |
+| 62 | Final | 46 | PASS | PASS |
+| 68 | Final | 47 | PASS | PASS |
+| 69 | Final | 12 | PASS | PASS |
+| 70 | Final | 13 | PASS | PASS |
+| 71 | Final | 14 | PASS | PASS |
+| 72 | Final | 15 | PASS | PASS |
+| 73 | Final | 16 | PASS | PASS |
+| 74 | Final | 48 | PASS | PASS |
+| 75 | Final | 49 | PASS | PASS |
+| 76 | Final | 50 | PASS | PASS |
+| 77 | Final | 51 | PASS | PASS |
+| 25 | Archive | 1 | PASS | PASS |
+| 61 | Archive | 2 | PASS | PASS |
+| 64 | Archive | 3 | PASS | PASS |
+| 65 | Archive | 4 | PASS | PASS |
+| 66 | Archive | 5 | PASS | PASS |
 
-| ID | Previous page | New page | Embedded QR | Desktop | Mobile |
-|---:|---:|---:|:---:|:---:|:---:|
-| 1 | 1 | 28 | PASS | PASS | PASS |
-| 2 | 2 | 19 | PASS | PASS | PASS |
-| 3 | 3 | 20 | PASS | PASS | PASS |
-| 4 | 4 | 21 | PASS | PASS | PASS |
-| 5 | 5 | 29 | PASS | PASS | PASS |
-| 6 | 6 | 30 | PASS | PASS | PASS |
-| 7 | 7 | 2 | PASS | PASS | PASS |
-| 8 | 8 | 31 | PASS | PASS | PASS |
-| 12 | 9 | 32 | PASS | PASS | PASS |
-| 13 | 10 | 22 | PASS | PASS | PASS |
-| 14 | 11 | 3 | PASS | PASS | PASS |
-| 15 | 12 | 4 | PASS | PASS | PASS |
-| 16 | 13 | 33 | PASS | PASS | PASS |
-| 17 | 14 | 5 | PASS | PASS | PASS |
-| 18 | 15 | 34 | PASS | PASS | PASS |
-| 19 | 16 | 6 | PASS | PASS | PASS |
-| 20 | 17 | 7 | PASS | PASS | PASS |
-| 21 | 18 | 23 | PASS | PASS | PASS |
-| 22 | 19 | 35 | PASS | PASS | PASS |
-| 23 | 20 | 8 | PASS | PASS | PASS |
-| 25 | 21 | 9 | PASS | PASS | PASS |
-| 26 | 22 | 10 | PASS | PASS | PASS |
-| 27 | 23 | 36 | PASS | PASS | PASS |
-| 30 | 24 | 11 | PASS | PASS | PASS |
-| 33 | 25 | 37 | PASS | PASS | PASS |
-| 42 | 26 | 38 | PASS | PASS | PASS |
-| 45 | 27 | 39 | PASS | PASS | PASS |
-| 49 | 28 | 24 | PASS | PASS | PASS |
-| 51 | 29 | 25 | PASS | PASS | PASS |
-| 52 | 30 | 40 | PASS | PASS | PASS |
-| 53 | 31 | 41 | PASS | PASS | PASS |
-| 54 | 32 | 42 | PASS | PASS | PASS |
-| 55 | 33 | 43 | PASS | PASS | PASS |
-| 56 | 34 | 26 | PASS | PASS | PASS |
-| 57 | 35 | 44 | PASS | PASS | PASS |
-| 58 | 36 | 45 | PASS | PASS | PASS |
-| 59 | 37 | 46 | PASS | PASS | PASS |
-| 60 | 38 | 12 | PASS | PASS | PASS |
-| 61 | 39 | 47 | PASS | PASS | PASS |
-| 62 | 40 | 48 | PASS | PASS | PASS |
-| 64 | 41 | 49 | PASS | PASS | PASS |
-| 65 | 42 | 50 | PASS | PASS | PASS |
-| 66 | 43 | 51 | PASS | PASS | PASS |
-| 68 | 44 | 52 | PASS | PASS | PASS |
-| 69 | 45 | 13 | PASS | PASS | PASS |
-| 70 | 46 | 14 | PASS | PASS | PASS |
-| 71 | 47 | 15 | PASS | PASS | PASS |
-| 72 | 48 | 16 | PASS | PASS | PASS |
-| 73 | 49 | 17 | PASS | PASS | PASS |
-| 74 | 50 | 53 | PASS | PASS | PASS |
-| 75 | 51 | 54 | PASS | PASS | PASS |
-| 76 | 52 | 55 | PASS | PASS | PASS |
-| 77 | 53 | 56 | PASS | PASS | PASS |
-
-Divider pages 1, 18 and 27: PASS in both profiles.
+Divider pages 1, 17 and 26 pass in both profiles.
 
 ## After publication
 
-Runtime commit: `fa95030231c8decd55285e74f9a4d18f3a70339b`.
+Production verification will be recorded after deployment.
 
-- GitHub Pages [deployment](https://github.com/Focus-os-2026/pdf-viewer/actions/runs/42451290157): success.
-- Published HTML, reader module, 56-page PDF and remapped stable IDs match the tested files byte-for-byte.
-- PDF HTTP Range: `206`, `Content-Range: bytes 0-1023/27192217`, 1,024 bytes returned.
-- Live native touch, scrolling, zoom, fullscreen, rotation and error handling checks pass.
-- Live desktop: **53/53 legacy IDs + 3/3 divider routes PASS**.
-- Live mobile emulation: **53/53 legacy IDs + 3/3 divider routes PASS**.
-- Live total: **112/112 entry checks PASS**, plus scrolling, zoom, page jumps, eviction, stable document height, first/last boundaries, ID precedence, invalid IDs and error cases.
-- `?id=1` opens Young Rice Jelly on page 28; `?id=77` opens KORA on page 56. All original QR URLs retain their original work identities.
-
-Managed Chromium uses `TEST_IGNORE_HTTPS_ERRORS=1` for the environment's TLS inspection. Independent HTTPS downloads use inherited CA trust with certificate verification enabled. Application TLS settings were not changed.
-
-[Live HTTP checks](live-http-checks.json).
-
-[Browser results](browser-results.json) · [Source PDF checks](pdf-checks.json) · [ID identity evidence](id-crosswalk.json)
+[Browser results](browser-results.json) · [File and embedded QR evidence](pdf-checks.json) · [ID routes](id-crosswalk.json)

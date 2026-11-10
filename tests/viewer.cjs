@@ -14,6 +14,20 @@ const idForPage = (n) =>
     executablePath: process.env.CHROMIUM_PATH || "/usr/bin/chromium",
     args: ["--no-sandbox"],
   });
+  const routes = [
+    ...Object.entries(mapping.idToPage).map(([id, page]) => ({
+      id,
+      page,
+      edition: "current",
+      count: mapping.pageCount,
+    })),
+    ...Object.entries(mapping.archive?.idToPage || {}).map(([id, page]) => ({
+      id,
+      page,
+      edition: "archive",
+      count: mapping.archive.pageCount,
+    })),
+  ];
   const results = [],
     sectionResults = [];
   await Promise.all(
@@ -44,7 +58,7 @@ const idForPage = (n) =>
         if (await p.locator("#tools").isHidden())
           await p.locator("#tool-toggle").click();
       }
-      async function rendered(n) {
+      async function rendered(n, expectedCount = mapping.pageCount) {
         await p
           .locator(`canvas[data-page="${n}"]`)
           .waitFor({ state: "visible", timeout: 45000 });
@@ -78,17 +92,25 @@ const idForPage = (n) =>
         assert(state.ink > 30);
         assert(state.pixels <= 8000000);
         assert(state.canvases <= state.slots);
-        assert.equal(await p.locator(".pdf-page").count(), mapping.pageCount);
+        assert.equal(await p.locator(".pdf-page").count(), expectedCount);
         assert.equal(
           await p.locator("#total").textContent(),
-          String(mapping.pageCount),
+          String(expectedCount),
         );
       }
       let count = 0;
-      for (const [id, page] of Object.entries(mapping.idToPage)) {
+      for (const { id, page, edition, count: expectedCount } of routes) {
         const start = Date.now();
         await p.goto(base + "?id=" + id);
-        await rendered(page);
+        await rendered(page, expectedCount);
+        const href = await p.locator("#full").getAttribute("href");
+        assert(
+          href.includes(
+            edition === "archive"
+              ? "innovation-archive.pdf"
+              : "innovation-final.pdf",
+          ),
+        );
         await p.waitForFunction(
           (n) =>
             Math.abs(
@@ -103,6 +125,7 @@ const idForPage = (n) =>
         assert.equal((await p.locator("body").innerText()).trim(), "⋯");
         results.push({
           profile: name,
+          edition,
           id,
           page,
           result: "PASS",
@@ -110,12 +133,7 @@ const idForPage = (n) =>
         });
         if (++count % 10 === 0)
           console.log(
-            name +
-              ": " +
-              count +
-              "/" +
-              Object.keys(mapping.idToPage).length +
-              " legacy IDs pass",
+            name + ": " + count + "/" + routes.length + " legacy IDs pass",
           );
       }
       for (const n of mapping.sectionPages || []) {
@@ -216,6 +234,27 @@ const idForPage = (n) =>
       assert.equal(new URL(p.url()).searchParams.get("id"), null);
       await p.goto(base + "?id=77&page=1");
       await rendered(mapping.idToPage["77"]);
+      if (mapping.archive) {
+        const firstId = Object.keys(mapping.archive.idToPage)[0];
+        await p.goto(base + "?id=" + firstId);
+        await rendered(1, mapping.archive.pageCount);
+        const step = await p
+          .locator('.pdf-page[data-page="1"]')
+          .evaluate((e) => e.getBoundingClientRect().height + 8);
+        await p.mouse.move(190, 300);
+        await p.mouse.wheel(0, step);
+        await p.waitForFunction(
+          () => document.querySelector("#page").value === "2",
+        );
+        await rendered(2, mapping.archive.pageCount);
+        const id2 = Object.entries(mapping.archive.idToPage).find(
+          ([, n]) => n === 2,
+        )[0];
+        await p.waitForFunction(
+          (id) => new URL(location.href).searchParams.get("id") === id,
+          id2,
+        );
+      }
       for (const query of [
         "id=9",
         "id=999",
