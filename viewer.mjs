@@ -1,3 +1,4 @@
+import { recordQrOpen } from "./analytics.mjs?v=1";
 import * as pdfjsLib from "./vendor/pdfjs/pdf.min.mjs";
 pdfjsLib.GlobalWorkerOptions.workerSrc = "./vendor/pdfjs/pdf.worker.min.mjs";
 const $ = (s) => document.querySelector(s);
@@ -236,6 +237,7 @@ function changeZoom(value) {
   layout();
 }
 async function start() {
+  const landingUrl = location.href;
   try {
     const response = await fetch("./mapping.json", { cache: "no-cache" });
     if (!response.ok) throw Error("โหลด Mapping ไม่สำเร็จ");
@@ -294,6 +296,7 @@ async function start() {
     ready = true;
     controls();
     layout(false);
+    recordQrOpen(id, mapping, landingUrl);
   } catch (error) {
     console.error("PDF load failed", error);
     ready = false;
